@@ -24,7 +24,7 @@ export const fadeIn = (delay = 0): Variants => ({
 export const slideIn = (
   direction: "left" | "right" | "up" | "down" = "up",
   distance = 40,
-  delay = 0
+  delay = 0,
 ): Variants => {
   const offset = {
     left: { x: -distance },

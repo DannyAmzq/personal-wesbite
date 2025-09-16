@@ -31,7 +31,8 @@ export default function Hero() {
             variants={fadeInUp(0.15, 18)}
             className="max-w-2xl text-base sm:text-lg text-zinc-300"
           >
-            I design intuitive interfaces, build performant web apps, and support the systems that keep them running. Let's bring your product to life.
+            I design intuitive interfaces, build performant web apps, and support the systems that
+            keep them running. Let's bring your product to life.
           </motion.p>
           <motion.div variants={fadeInUp(0.2, 20)} className="flex gap-3">
             <Link

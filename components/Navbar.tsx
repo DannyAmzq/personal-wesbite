@@ -29,10 +29,7 @@ export default function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.05 * i }}
             >
-              <Link
-                href={link.href}
-                className="hover:text-white transition-colors"
-              >
+              <Link href={link.href} className="hover:text-white transition-colors">
                 {link.label}
               </Link>
             </motion.li>
@@ -42,4 +39,3 @@ export default function Navbar() {
     </header>
   );
 }
-
