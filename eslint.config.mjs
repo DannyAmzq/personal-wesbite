@@ -13,8 +13,8 @@ export default [
       "**/build/**",
       "**/out/**",
       "**/coverage/**",
-      "**/*.min.js"
-    ]
+      "**/*.min.js",
+    ],
   },
   js.configs.recommended,
   {
@@ -25,12 +25,12 @@ export default [
         ecmaVersion: "latest",
         sourceType: "module",
         ecmaFeatures: { jsx: true },
-        project: false
-      }
+        project: false,
+      },
     },
     plugins: {
       "@typescript-eslint": tsPlugin,
-      "@next/next": nextPlugin
+      "@next/next": nextPlugin,
     },
     rules: {
       // Next.js recommended rules
@@ -39,7 +39,7 @@ export default [
       // TypeScript rules (minimal defaults)
       "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
       // TypeScript has its own undefined checks; disable for TS/JSX files
-      "no-undef": "off"
-    }
-  }
+      "no-undef": "off",
+    },
+  },
 ];
