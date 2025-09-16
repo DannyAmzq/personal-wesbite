@@ -2,7 +2,21 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+Quick start (Windows PowerShell):
+
+```pwsh
+# Install dependencies
+npm install
+
+# Start the dev server
+npm run dev
+```
+
+Then open http://localhost:3000 in your browser.
+
+First time here? Recommended VS Code extensions are auto-suggested; if prompted, click "Install" for ESLint, Prettier, and Tailwind CSS IntelliSense.
+
+You can also use other package managers:
 
 ```bash
 npm run dev
@@ -19,6 +33,16 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+### Linting
+
+Run lint checks locally:
+
+```pwsh
+npm run lint
+```
+
+If VS Code shows ESLint warnings, you can auto-fix many issues on save (enabled in `.vscode/settings.json`).
 
 ## Learn More
 
