@@ -43,7 +43,7 @@ export default function RootLayout({
         } catch (e) {}
       `}</Script>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-  <BackgroundDots count={140} />
+        <BackgroundDots count={140} />
         <Navbar />
         {children}
       </body>
