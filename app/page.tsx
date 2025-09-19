@@ -9,10 +9,7 @@ export default function Home() {
         <Section id="work" title="Selected work">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[1, 2, 3, 4].map((i) => (
-              <div
-                key={i}
-                className="group relative overflow-hidden rounded-xl p-5 surface"
-              >
+              <div key={i} className="group relative overflow-hidden rounded-xl p-5 surface">
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-[var(--foreground)] font-semibold">Project {i}</h3>
@@ -57,9 +54,7 @@ export default function Home() {
           </p>
         </Section>
         <Section id="contact" title="Contact">
-          <p className="muted">
-            Open to entry-level roles and freelance projects. Let's talk.
-          </p>
+          <p className="muted">Open to entry-level roles and freelance projects. Let's talk.</p>
           <div className="mt-4 flex gap-3">
             <a
               href="mailto:you@example.com"

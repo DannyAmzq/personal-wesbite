@@ -27,7 +27,8 @@ export default function ThemeToggle() {
       | null;
     let initial: "dark" | "light" = "dark";
     if (stored) initial = stored;
-    else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches) initial = "light";
+    else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches)
+      initial = "light";
     setTheme(initial);
     applyTheme(initial);
     setMounted(true);
@@ -46,9 +47,7 @@ export default function ThemeToggle() {
 
   // Avoid hydration mismatch
   if (!mounted) {
-    return (
-      <div className="h-8 w-8 rounded-md border border-white/10 bg-white/5" />
-    );
+    return <div className="h-8 w-8 rounded-md border border-white/10 bg-white/5" />;
   }
 
   const isDark = theme === "dark";
