@@ -37,7 +37,7 @@ export default function Hero() {
           <motion.div variants={fadeInUp(0.2, 20)} className="flex gap-3">
             <Link
               href="#work"
-              className="inline-flex h-11 items-center rounded-md bg-white px-5 text-sm font-semibold text-black shadow transition-colors hover:bg-zinc-200"
+              className="inline-flex h-11 items-center rounded-md px-5 text-sm font-semibold shadow transition-colors btn-accent"
             >
               View work
             </Link>
