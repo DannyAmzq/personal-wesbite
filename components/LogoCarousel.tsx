@@ -13,14 +13,21 @@ type Props = {
   height?: number; // px height of logos
   gap?: number; // px gap between items
   speed?: number; // px per second base speed
+  direction?: "left" | "right"; // scroll direction
 };
 
-export default function LogoCarousel({ items, height = 48, gap = 28, speed = 40 }: Props) {
+export default function LogoCarousel({
+  items,
+  height = 48,
+  gap = 28,
+  speed = 40,
+  direction = "left",
+}: Props) {
   const reduce = useReducedMotion();
   const [mounted, setMounted] = useState(false);
   const [hovered, setHovered] = useState(false);
   const trackRef = useRef<HTMLDivElement | null>(null);
-  const dupCount = 2; // duplicate tracks for seamless loop
+  const dupCount = 3; // use 3 duplicates to keep middle in view for seamless loop
   const x = useMotionValue(0);
   const [trackW, setTrackW] = useState(0);
 
@@ -40,13 +47,29 @@ export default function LogoCarousel({ items, height = 48, gap = 28, speed = 40 
     return () => ro.disconnect();
   }, []);
 
+  // Initialize x offset so the middle sequence is visible (prevents seeing edges)
+  useEffect(() => {
+    if (mounted && trackW) {
+      x.set(-trackW);
+    }
+  }, [mounted, trackW, x]);
+
   useAnimationFrame((_, delta) => {
     if (!mounted || reduce || !trackW) return;
     const pxPerMs = (hovered ? speed * 0.4 : speed) / 1000; // slow to 40% on hover
-    let next = x.get() - pxPerMs * delta; // move left
-    // Loop when we have moved a full track width
-    if (Math.abs(next) >= trackW) {
-      next = next + trackW; // keep residual for smoothness
+    const dir = direction === "right" ? 1 : -1;
+    let next = x.get() + dir * pxPerMs * delta; // move left/right
+    // Keep x within a stable window depending on direction to avoid seams
+    if (dir === -1) {
+      // moving left: keep within [-2*trackW, -trackW]
+      if (next <= -2 * trackW) {
+        next += trackW;
+      }
+    } else {
+      // moving right: keep within [-trackW, 0]
+      if (next >= 0) {
+        next -= trackW;
+      }
     }
     x.set(next);
   });
@@ -63,13 +86,13 @@ export default function LogoCarousel({ items, height = 48, gap = 28, speed = 40 
       onMouseLeave={() => setHovered(false)}
     >
       {/* backdrop blur edges */}
-  <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[color-mix(in_oklab,var(--background)_75%,transparent)] to-transparent backdrop-blur-[2px]" />
-  <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[color-mix(in_oklab,var(--background)_75%,transparent)] to-transparent backdrop-blur-[2px]" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-[color-mix(in_oklab,var(--background)_75%,transparent)] to-transparent backdrop-blur-[2px]" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-[color-mix(in_oklab,var(--background)_75%,transparent)] to-transparent backdrop-blur-[2px]" />
 
       <div ref={trackRef} className="overflow-hidden py-1" style={maskStyle}>
         <motion.div className="flex" style={{ x }}>
           {Array.from({ length: dupCount }).map((_, seq) => (
-            <div key={seq} data-seq={seq} className="flex" style={{ gap }}>
+            <div key={seq} data-seq={seq} className="flex" style={{ gap, paddingRight: gap }}>
               {safeItems.map((item, idx) => (
                 <Logo key={`${seq}-${idx}-${item.name}`} item={item} height={height} />
               ))}
@@ -111,15 +134,14 @@ function Logo({ item, height }: { item: LogoItem; height: number }) {
         <motion.div
           whileHover={{ scale: 1.12 }}
           transition={{ type: "spring", stiffness: 320, damping: 26, mass: 0.3 }}
-          className="grid place-items-center rounded-md border"
+          className="inline-flex items-center justify-center rounded-full border px-3"
           style={{
-            width: height,
             height,
             background: bg,
             borderColor: "color-mix(in oklab, var(--foreground) 14%, transparent)",
           }}
         >
-          <span className="text-xs font-medium text-[color-mix(in_oklab,var(--foreground)_80%,transparent)]">
+          <span className="text-sm font-medium text-[color-mix(in_oklab,var(--foreground)_80%,transparent)] whitespace-nowrap">
             {item.name}
           </span>
         </motion.div>

@@ -1,6 +1,6 @@
 import Hero from "@/components/Hero";
 import Section from "@/components/Section";
-import LogoCarousel from "@/components/LogoCarousel";
+import StackedLogoMarquee from "@/components/StackedLogoMarquee";
 
 export default function Home() {
   return (
@@ -27,25 +27,55 @@ export default function Home() {
           </div>
         </Section>
         <Section id="skills" title="Skills & tools">
-          <div className="mt-2">
-            <LogoCarousel
-              height={48}
-              gap={28}
-              speed={40}
-              items={[
-                { name: "Figma", src: "/logos/figma.svg" },
-                { name: "Framer", src: "/logos/framer.svg" },
-                { name: "Framer Motion", src: "/logos/framer-motion.svg" },
-                { name: "Next.js", src: "/logos/nextjs.svg" },
-                { name: "React", src: "/logos/react.svg" },
-                { name: "TypeScript", src: "/logos/typescript.svg" },
-                { name: "Tailwind CSS", src: "/logos/tailwindcss.svg" },
-                { name: "Node.js", src: "/logos/nodejs.svg" },
-                { name: "Windows", src: "/logos/windows.png" },
-                { name: "macOS", src: "/logos/macos.svg" },
-                { name: "Linux", src: "/logos/linux.svg" },
-                { name: "Networking", src: "/logos/networking.svg" },
-                { name: "IT Support", src: "/logos/it-support.svg" },
+          <div className="mt-3">
+            <StackedLogoMarquee
+              rowGap={12}
+              rows={[
+                {
+                  // Skills as text pills (no src)
+                  items: [
+                    { name: "UI/UX Design" },
+                    { name: "Wireframing" },
+                    { name: "Prototyping" },
+                    { name: "Frontend Dev" },
+                    { name: "Accessibility" },
+                    { name: "Performance" },
+                    { name: "IT Support" },
+                    { name: "Networking" },
+                  ],
+                  height: 36,
+                  speed: 28,
+                  gap: 20,
+                  direction: "right",
+                },
+                {
+                  // Tools/logos row 1
+                  items: [
+                    { name: "Figma", src: "/logos/figma.svg" },
+                    { name: "Framer", src: "/logos/framer.svg" },
+                    { name: "Framer Motion", src: "/logos/framer-motion.svg" },
+                    { name: "Next.js", src: "/logos/nextjs.svg" },
+                    { name: "React", src: "/logos/react.svg" },
+                    { name: "TypeScript", src: "/logos/typescript.svg" },
+                    { name: "Tailwind CSS", src: "/logos/tailwindcss.svg" },
+                    { name: "Node.js", src: "/logos/nodejs.svg" },
+                    { name: "Windows", src: "/logos/windows.png" },
+                    { name: "macOS", src: "/logos/macos.svg" },
+                    { name: "Linux", src: "/logos/linux.svg" },
+                  ],
+                  height: 56, // make logos bigger
+                  speed: 44,
+                  gap: 32,
+                  direction: "left",
+                },
+                {
+                  // Tools/logos row 2
+                  items: [],
+                  height: 56,
+                  speed: 36,
+                  gap: 32,
+                  direction: "right",
+                },
               ]}
             />
           </div>
