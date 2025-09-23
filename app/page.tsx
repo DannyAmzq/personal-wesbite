@@ -7,23 +7,25 @@ export default function Home() {
     <>
       <main className="font-sans">
         <Hero />
-        <Section id="work" title="Selected work">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="group relative overflow-hidden rounded-xl p-5 surface">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-[var(--foreground)] font-semibold">Project {i}</h3>
-                    <p className="text-sm muted">
-                      Short description of the project focusing on value and role.
-                    </p>
+        <Section id="selected-work" title="Selected work">
+          <div className="glass-liquid p-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="group relative overflow-hidden rounded-xl p-5 surface">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-[var(--foreground)] font-semibold">Project {i}</h3>
+                      <p className="text-sm muted">
+                        Short description of the project focusing on value and role.
+                      </p>
+                    </div>
+                    <span className="text-xs rounded-full px-2 py-1 text-[color-mix(in_oklab,var(--foreground)_78%,transparent)] bg-[color-mix(in_oklab,var(--background)_80%,transparent)] border border-[color-mix(in_oklab,var(--foreground)_14%,transparent)]">
+                      Case study
+                    </span>
                   </div>
-                  <span className="text-xs rounded-full px-2 py-1 text-[color-mix(in_oklab,var(--foreground)_78%,transparent)] bg-[color-mix(in_oklab,var(--background)_80%,transparent)] border border-[color-mix(in_oklab,var(--foreground)_14%,transparent)]">
-                    Case study
-                  </span>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </Section>
         <Section id="skills" title="Skills & tools">

@@ -5,7 +5,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Navbar() {
   const links = [
-    { href: "#work", label: "Work" },
+    { href: "#selected-work", label: "Work" },
     { href: "#skills", label: "Skills" },
     { href: "#about", label: "About" },
     { href: "#contact", label: "Contact" },
