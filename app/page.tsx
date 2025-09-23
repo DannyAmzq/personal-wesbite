@@ -1,5 +1,6 @@
 import Hero from "@/components/Hero";
 import Section from "@/components/Section";
+import LogoCarousel from "@/components/LogoCarousel";
 
 export default function Home() {
   return (
@@ -26,25 +27,28 @@ export default function Home() {
           </div>
         </Section>
         <Section id="skills" title="Skills & tools">
-          <ul className="flex flex-wrap gap-2 text-sm text-[color-mix(in_oklab,var(--foreground)_78%,transparent)]">
-            {[
-              "Figma",
-              "Framer",
-              "Framer Motion",
-              "Next.js",
-              "React",
-              "TypeScript",
-              "Tailwind CSS",
-              "Node.js",
-              "IT Support",
-              "Networking",
-              "Windows/MacOS",
-            ].map((s) => (
-              <li key={s} className="rounded-md px-3 py-1 surface">
-                {s}
-              </li>
-            ))}
-          </ul>
+          <div className="mt-2">
+            <LogoCarousel
+              height={48}
+              gap={28}
+              speed={40}
+              items={[
+                { name: "Figma", src: "/logos/figma.svg" },
+                { name: "Framer", src: "/logos/framer.svg" },
+                { name: "Framer Motion", src: "/logos/framer-motion.svg" },
+                { name: "Next.js", src: "/logos/nextjs.svg" },
+                { name: "React", src: "/logos/react.svg" },
+                { name: "TypeScript", src: "/logos/typescript.svg" },
+                { name: "Tailwind CSS", src: "/logos/tailwindcss.svg" },
+                { name: "Node.js", src: "/logos/nodejs.svg" },
+                { name: "Windows", src: "/logos/windows.png" },
+                { name: "macOS", src: "/logos/macos.svg" },
+                { name: "Linux", src: "/logos/linux.svg" },
+                { name: "Networking", src: "/logos/networking.svg" },
+                { name: "IT Support", src: "/logos/it-support.svg" },
+              ]}
+            />
+          </div>
         </Section>
         <Section id="about" title="About me">
           <p className="max-w-3xl muted">
