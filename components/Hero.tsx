@@ -17,19 +17,19 @@ export default function Hero() {
         >
           <motion.span
             variants={fadeInUp(0.05, 10)}
-            className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-zinc-300 shadow-sm backdrop-blur"
+            className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-zinc-300 shadow-sm backdrop-blur hero-badge"
           >
             UI/UX • Frontend • IT Support
           </motion.span>
           <motion.h1
             variants={fadeInUp(0.1, 14)}
-            className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white"
+            className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white hero-title"
           >
             Crafting clear, modern digital experiences
           </motion.h1>
           <motion.p
             variants={fadeInUp(0.15, 18)}
-            className="max-w-2xl text-base sm:text-lg text-zinc-300"
+            className="max-w-2xl text-base sm:text-lg text-zinc-300 muted"
           >
             I design intuitive interfaces, build performant web apps, and support the systems that
             keep them running. Let's bring your product to life.
@@ -43,7 +43,7 @@ export default function Hero() {
             </Link>
             <Link
               href="#contact"
-              className="inline-flex h-11 items-center rounded-md border border-white/15 bg-white/5 px-5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-white/10"
+              className="inline-flex h-11 items-center rounded-md border border-white/15 bg-white/5 px-5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-white/10 hero-secondary hero-secondary-btn"
             >
               Contact me
             </Link>

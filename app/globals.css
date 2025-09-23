@@ -45,6 +45,32 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Light-mode tweaks for the Hero section */
+[data-theme="light"] .hero-title {
+  /* Use near-black foreground in light mode */
+  color: var(--foreground);
+}
+[data-theme="light"] .hero-secondary {
+  color: var(--foreground);
+}
+
+/* Badge subtle style in light mode */
+[data-theme="light"] .hero-badge {
+  background-color: color-mix(in oklab, var(--foreground) 6%, transparent);
+  border: 1px solid color-mix(in oklab, var(--foreground) 14%, transparent);
+  color: color-mix(in oklab, var(--foreground) 60%, transparent);
+}
+
+/* Secondary button for light mode */
+[data-theme="light"] .hero-secondary-btn {
+  border: 1px solid color-mix(in oklab, var(--foreground) 12%, transparent);
+  background-color: color-mix(in oklab, var(--background) 96%, transparent);
+  color: var(--foreground);
+}
+[data-theme="light"] .hero-secondary-btn:hover {
+  background-color: color-mix(in oklab, var(--background) 92%, transparent);
+}
+
 /* Utility helpers using the accent token */
 .btn-accent {
   background-color: var(--accent);
