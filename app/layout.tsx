@@ -27,21 +27,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
-      <Script id="theme-init" strategy="beforeInteractive">{`
-        try {
-          var stored = localStorage.getItem('theme');
-          var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-          var t = stored || (prefersLight ? 'light' : 'dark');
-          var html = document.documentElement;
-          if (t === 'dark') {
-            html.classList.add('dark');
-            html.removeAttribute('data-theme');
-          } else {
-            html.classList.remove('dark');
-            html.setAttribute('data-theme', 'light');
-          }
-        } catch (e) {}
-      `}</Script>
+      <head>
+        <Script id="theme-init" strategy="beforeInteractive">{`
+          try {
+            var stored = localStorage.getItem('theme');
+            var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+            var t = stored || (prefersLight ? 'light' : 'dark');
+            var html = document.documentElement;
+            if (t === 'dark') {
+              html.classList.add('dark');
+              html.removeAttribute('data-theme');
+            } else {
+              html.classList.remove('dark');
+              html.setAttribute('data-theme', 'light');
+            }
+          } catch (e) {}
+        `}</Script>
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <BackgroundDots count={140} />
         <Navbar />
