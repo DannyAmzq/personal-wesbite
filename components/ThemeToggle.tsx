@@ -35,12 +35,16 @@ export default function ThemeToggle() {
   const toggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     const next = theme === "dark" ? "light" : "dark";
 
-    if (reduce) {
+    const commit = () => {
       setTheme(next);
       applyTheme(next);
       try {
         localStorage.setItem("theme", next);
       } catch {}
+    };
+
+    if (reduce || !("startViewTransition" in document)) {
+      commit();
       return;
     }
 
@@ -48,50 +52,17 @@ export default function ThemeToggle() {
     const rect = btn.getBoundingClientRect();
     const x = rect.left + rect.width / 2;
     const y = rect.top + rect.height / 2;
-
-    // Overlay color matches the incoming theme's background
-    const newBg = next === "dark" ? "#0a0a0a" : "#ffffff";
-
-    const overlay = document.createElement("div");
-    overlay.style.cssText = `
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      background: ${newBg};
-      clip-path: circle(0px at ${x}px ${y}px);
-      pointer-events: none;
-    `;
-    document.body.appendChild(overlay);
-
-    // Expand to cover full viewport from button origin
     const maxRadius =
       Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y)) * 1.05;
 
-    const expand = overlay.animate(
-      [
-        { clipPath: `circle(0px at ${x}px ${y}px)` },
-        { clipPath: `circle(${maxRadius}px at ${x}px ${y}px)` },
-      ],
-      { duration: 600, easing: "cubic-bezier(0.76, 0, 0.24, 1)", fill: "forwards" }
-    );
+    // Pass origin + radius to CSS via custom properties
+    const root = document.documentElement;
+    root.style.setProperty("--wipe-x", `${x}px`);
+    root.style.setProperty("--wipe-y", `${y}px`);
+    root.style.setProperty("--wipe-r", `${maxRadius}px`);
 
-    expand.onfinish = () => {
-      // Theme is applied while overlay fully covers — no flash
-      setTheme(next);
-      applyTheme(next);
-      try {
-        localStorage.setItem("theme", next);
-      } catch {}
-
-      // Fade out to reveal the new theme beneath
-      const fade = overlay.animate([{ opacity: 1 }, { opacity: 0 }], {
-        duration: 180,
-        easing: "ease-out",
-        fill: "forwards",
-      });
-
-      fade.onfinish = () => overlay.remove();
-    };
+    // Browser snapshots old state, calls commit(), then animates new state in
+    document.startViewTransition(commit);
   };
 
   if (!mounted) {
