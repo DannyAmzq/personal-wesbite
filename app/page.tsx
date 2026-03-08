@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Hero from "@/components/Hero";
 import Section from "@/components/Section";
 import StackedLogoMarquee from "@/components/StackedLogoMarquee";
@@ -81,11 +82,53 @@ export default function Home() {
           </div>
         </Section>
         <Section id="about" title="About me">
-          <p className="max-w-3xl muted">
-            I'm a UI/UX designer and frontend developer who enjoys turning complex ideas into
-            simple, delightful interfaces. With a background in IT support, I bridge design,
-            engineering, and reliability to ship usable products.
-          </p>
+          <div className="flex flex-col md:flex-row gap-10 md:gap-16 items-start">
+            {/* Photo */}
+            <div className="shrink-0 w-full md:w-auto flex justify-center md:justify-start">
+              <div className="relative">
+                {/* Offset accent frame */}
+                <div className="absolute -inset-[3px] rounded-3xl bg-[color-mix(in_oklab,var(--accent)_30%,transparent)]" />
+                <div className="relative w-64 md:w-72 overflow-hidden rounded-3xl ring-1 ring-[color-mix(in_oklab,var(--foreground)_10%,transparent)] shadow-2xl">
+                  <Image
+                    src="/Headshot.jpg"
+                    alt="Danny Amezquita"
+                    width={640}
+                    height={960}
+                    className="w-full object-cover object-top"
+                    priority
+                  />
+                </div>
+                {/* Available badge */}
+                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium shadow-lg surface whitespace-nowrap">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  Available for work
+                </div>
+              </div>
+            </div>
+
+            {/* Bio */}
+            <div className="flex flex-col gap-6 pt-2">
+              <div className="flex flex-col gap-1">
+                <h3 className="text-xl font-semibold text-[var(--foreground)]">Danny Amezquita</h3>
+                <p className="text-sm font-medium text-[var(--accent)]">UX Engineer · Frontend Developer · IT Pro</p>
+              </div>
+              <p className="text-base leading-relaxed muted">
+                I'm a UI/UX designer and frontend developer who enjoys turning complex ideas into
+                simple, delightful interfaces. With a background in IT support, I bridge design,
+                engineering, and reliability to ship usable products.
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {["UI/UX Design", "Frontend Dev", "IT Support", "Based in Texas"].map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-xs rounded-full px-3 py-1 surface text-[color-mix(in_oklab,var(--foreground)_78%,transparent)]"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
         </Section>
         <Section id="contact" title="Contact">
           <p className="muted">Open to entry-level roles and freelance projects. Let's talk.</p>
