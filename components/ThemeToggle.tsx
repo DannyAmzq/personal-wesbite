@@ -14,7 +14,7 @@ function applyTheme(theme: "dark" | "light") {
 }
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [theme, setTheme] = useState<"dark" | "light">("light");
   const [mounted, setMounted] = useState(false);
   const reduce = useReducedMotion();
 

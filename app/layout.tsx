@@ -26,13 +26,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" data-theme="light" suppressHydrationWarning>
       <head>
         <Script id="theme-init" strategy="beforeInteractive">{`
           try {
             var stored = localStorage.getItem('theme');
-            var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
-            var t = stored || (prefersLight ? 'light' : 'dark');
+            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            var t = stored || (prefersDark ? 'dark' : 'light');
             var html = document.documentElement;
             if (t === 'dark') {
               html.classList.add('dark');
