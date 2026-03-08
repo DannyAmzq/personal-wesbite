@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { fadeInUp, staggerContainer, viewportOnce } from "@/lib/motion";
 import Link from "next/link";
+import MagneticButton from "@/components/MagneticButton";
 
 export default function Hero() {
   return (
@@ -35,18 +36,22 @@ export default function Hero() {
             keep them running. Let's bring your product to life.
           </motion.p>
           <motion.div variants={fadeInUp(0.2, 20)} className="flex gap-3">
-            <Link
-              href="#work"
-              className="inline-flex h-11 items-center rounded-md px-5 text-sm font-semibold shadow transition-colors btn-accent"
-            >
-              View work
-            </Link>
-            <Link
-              href="#contact"
-              className="inline-flex h-11 items-center rounded-md border border-white/15 bg-white/5 px-5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-white/10 hero-secondary hero-secondary-btn"
-            >
-              Contact me
-            </Link>
+            <MagneticButton>
+              <Link
+                href="#work"
+                className="inline-flex h-11 items-center rounded-md px-5 text-sm font-semibold shadow transition-colors btn-accent"
+              >
+                View work
+              </Link>
+            </MagneticButton>
+            <MagneticButton>
+              <Link
+                href="#contact"
+                className="inline-flex h-11 items-center rounded-md border border-white/15 bg-white/5 px-5 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-white/10 hero-secondary hero-secondary-btn"
+              >
+                Contact me
+              </Link>
+            </MagneticButton>
           </motion.div>
         </motion.div>
       </div>

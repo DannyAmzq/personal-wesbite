@@ -1,12 +1,17 @@
 "use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useState, useEffect, useCallback } from "react";
 import ThemeToggle from "@/components/ThemeToggle";
+import MagneticButton from "@/components/MagneticButton";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const reduce = useReducedMotion();
+  const pathname = usePathname();
+  // Prefix hash links with "/" when not on the homepage so they navigate back correctly
+  const h = (hash: string) => (pathname === "/" ? hash : `/${hash}`);
 
   // rAF-throttled resize — avoids setState on every pixel while dragging
   useEffect(() => {
@@ -28,11 +33,11 @@ export default function Navbar() {
   const close = useCallback(() => setOpen(false), []);
 
   const links = [
-    { href: "#work", label: "Work" },
-    { href: "#skills", label: "Skills" },
-    { href: "#about", label: "About" },
+    { href: h("#work"), label: "Work" },
+    { href: h("#skills"), label: "Skills" },
+    { href: h("#about"), label: "About" },
     { href: "/now", label: "Now" },
-    { href: "#contact", label: "Contact" },
+    { href: h("#contact"), label: "Contact" },
   ];
 
   // Tween (not spring) — smoother for opacity/rotate on small elements
@@ -69,12 +74,14 @@ export default function Navbar() {
         </ul>
         <div className="flex items-center gap-2">
           <ThemeToggle />
-          <a
-            href="#contact"
-            className="hidden sm:inline-flex h-8 items-center rounded-md border border-[color-mix(in_oklab,var(--foreground)_14%,transparent)] bg-[color-mix(in_oklab,var(--background)_92%,transparent)] px-3 text-xs font-medium text-[var(--foreground)] hover:bg-[color-mix(in_oklab,var(--background)_88%,transparent)] focus-visible:outline-none focus-visible:ring-2 ring-accent"
-          >
-            Let's talk
-          </a>
+          <MagneticButton className="hidden sm:block" strength={0.4}>
+            <a
+              href={h("#contact")}
+              className="inline-flex h-8 items-center rounded-md border border-[color-mix(in_oklab,var(--foreground)_14%,transparent)] bg-[color-mix(in_oklab,var(--background)_92%,transparent)] px-3 text-xs font-medium text-[var(--foreground)] hover:bg-[color-mix(in_oklab,var(--background)_88%,transparent)] focus-visible:outline-none focus-visible:ring-2 ring-accent"
+            >
+              Let's talk
+            </a>
+          </MagneticButton>
           {/* Mobile hamburger — no layout prop (avoids layout recalculation on each toggle) */}
           <button
             onClick={toggle}
