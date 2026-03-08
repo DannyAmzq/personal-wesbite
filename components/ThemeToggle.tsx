@@ -4,7 +4,6 @@ import { motion, useReducedMotion, type Transition } from "framer-motion";
 
 function applyTheme(theme: "dark" | "light") {
   const html = document.documentElement;
-  // Maintain Tailwind class-based dark styles
   if (theme === "dark") {
     html.classList.add("dark");
     html.removeAttribute("data-theme");
@@ -20,7 +19,6 @@ export default function ThemeToggle() {
   const reduce = useReducedMotion();
 
   useEffect(() => {
-    // Initialize from storage or system preference
     const stored = (typeof window !== "undefined" && localStorage.getItem("theme")) as
       | "dark"
       | "light"
@@ -34,18 +32,68 @@ export default function ThemeToggle() {
     setMounted(true);
   }, []);
 
-  const toggle = () => {
+  const toggle = (e: React.MouseEvent<HTMLButtonElement>) => {
     const next = theme === "dark" ? "light" : "dark";
-    setTheme(next);
-    applyTheme(next);
-    try {
-      localStorage.setItem("theme", next);
-    } catch {
-      // ignore storage errors
+
+    if (reduce) {
+      setTheme(next);
+      applyTheme(next);
+      try {
+        localStorage.setItem("theme", next);
+      } catch {}
+      return;
     }
+
+    const btn = e.currentTarget;
+    const rect = btn.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+
+    // Overlay color matches the incoming theme's background
+    const newBg = next === "dark" ? "#0a0a0a" : "#ffffff";
+
+    const overlay = document.createElement("div");
+    overlay.style.cssText = `
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: ${newBg};
+      clip-path: circle(0px at ${x}px ${y}px);
+      pointer-events: none;
+    `;
+    document.body.appendChild(overlay);
+
+    // Expand to cover full viewport from button origin
+    const maxRadius =
+      Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y)) * 1.05;
+
+    const expand = overlay.animate(
+      [
+        { clipPath: `circle(0px at ${x}px ${y}px)` },
+        { clipPath: `circle(${maxRadius}px at ${x}px ${y}px)` },
+      ],
+      { duration: 600, easing: "cubic-bezier(0.76, 0, 0.24, 1)", fill: "forwards" }
+    );
+
+    expand.onfinish = () => {
+      // Theme is applied while overlay fully covers — no flash
+      setTheme(next);
+      applyTheme(next);
+      try {
+        localStorage.setItem("theme", next);
+      } catch {}
+
+      // Fade out to reveal the new theme beneath
+      const fade = overlay.animate([{ opacity: 1 }, { opacity: 0 }], {
+        duration: 180,
+        easing: "ease-out",
+        fill: "forwards",
+      });
+
+      fade.onfinish = () => overlay.remove();
+    };
   };
 
-  // Avoid hydration mismatch
   if (!mounted) {
     return <div className="h-8 w-8 rounded-md border border-white/10 bg-white/5" />;
   }
@@ -56,7 +104,6 @@ export default function ThemeToggle() {
   const transitionSpring: Transition = { type: "spring", stiffness: 400, damping: 30, mass: 0.2 };
   const transitionChoice: Transition = reduce ? transitionQuick : transitionSpring;
 
-  // Dynamic classes for track & knob to reverse color scheme
   const trackClasses = `relative inline-flex h-[28px] w-[52px] items-center rounded-full border focus-visible:outline-none focus-visible:ring-2 ring-accent transition-colors duration-300
     border-[color-mix(in_oklab,var(--foreground)_16%,transparent)]
     ${
@@ -97,13 +144,11 @@ export default function ThemeToggle() {
           transition={transitionChoice}
         >
           {isDark ? (
-            // Dark mode: show sun (invite light mode)
             <g stroke="var(--accent)" strokeWidth="1.6" strokeLinecap="round">
               <circle cx="12" cy="12" r="4.5" />
               <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l-1.4-1.4M20.4 20.4 19 19M5 19l-1.4 1.4M20.4 3.6 19 5" />
             </g>
           ) : (
-            // Light mode: show moon (invite dark mode)
             <path
               d="M20 12.5a8 8 0 1 1-8.5-8 6.5 6.5 0 0 0 8.5 8z"
               stroke="var(--accent)"
