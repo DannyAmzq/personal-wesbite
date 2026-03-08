@@ -2,6 +2,7 @@ import Image from "next/image";
 import Hero from "@/components/Hero";
 import Section from "@/components/Section";
 import StackedLogoMarquee from "@/components/StackedLogoMarquee";
+import CurrentlyReading from "@/components/CurrentlyReading";
 
 export default function Home() {
   return (
@@ -129,6 +130,9 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </Section>
+        <Section id="reading" title="Currently reading">
+          <CurrentlyReading />
         </Section>
         <Section id="contact" title="Contact">
           <p className="muted">Open to entry-level roles and freelance projects. Let's talk.</p>
