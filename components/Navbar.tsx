@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { useState, useEffect, useCallback } from "react";
 import ThemeToggle from "@/components/ThemeToggle";
 import MagneticButton from "@/components/MagneticButton";
+import SignatureLogo from "@/components/SignatureLogo";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -50,14 +51,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 backdrop-blur bg-[color-mix(in_oklab,var(--background)_80%,transparent)] border-b border-[color-mix(in_oklab,var(--foreground)_14%,transparent)]">
       <nav className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 h-14 flex items-center justify-between">
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="font-semibold tracking-tight text-[var(--foreground)]"
-        >
-          Danny Amezquita
-        </motion.div>
+        <SignatureLogo />
         <ul className="hidden sm:flex items-center gap-6 text-sm text-[color-mix(in_oklab,var(--foreground)_70%,transparent)]">
           {links.map((link, i) => (
             <motion.li
