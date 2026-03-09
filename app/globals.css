@@ -50,6 +50,7 @@ html {
   --color-accent-foreground: var(--accent-foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-instrument-serif);
 }
 
 /* Light theme overrides when opt-in via attribute */

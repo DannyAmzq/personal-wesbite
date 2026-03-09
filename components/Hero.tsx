@@ -24,7 +24,7 @@ export default function Hero() {
           </motion.span>
           <motion.h1
             variants={fadeInUp(0.1, 14)}
-            className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white hero-title"
+            className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white hero-title font-[family-name:var(--font-display)]"
           >
             Crafting clear, modern digital experiences
           </motion.h1>

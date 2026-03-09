@@ -17,7 +17,7 @@ export default function NowPage() {
           <span className="text-xs font-semibold text-[var(--accent)] uppercase tracking-widest">
             March 2026
           </span>
-          <h1 className="mt-2 text-4xl font-bold tracking-tight text-[var(--foreground)]">
+          <h1 className="mt-2 text-4xl font-bold tracking-tight text-[var(--foreground)] font-[family-name:var(--font-display)]">
             What I'm up to
           </h1>
           <p className="mt-3 text-base muted leading-relaxed">

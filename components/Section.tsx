@@ -19,7 +19,7 @@ export default function Section({ id, title, className, children }: SectionProps
             initial="hidden"
             whileInView="show"
             viewport={viewportOnce}
-            className="mb-8 text-2xl sm:text-3xl font-bold text-[var(--foreground)]"
+            className="mb-8 text-2xl sm:text-3xl font-bold text-[var(--foreground)] font-[family-name:var(--font-display)]"
           >
             {title}
           </motion.h2>
