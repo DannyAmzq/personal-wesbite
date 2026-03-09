@@ -19,7 +19,7 @@ const wordVariants = {
 export default function Hero() {
   return (
     <section className="relative py-24 sm:py-28 md:py-32">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(50%_50%_at_50%_0%,rgba(120,119,198,0.25)_0%,rgba(120,119,198,0)_50%)]" />
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(60%_55%_at_50%_0%,rgba(96,165,250,0.18)_0%,rgba(167,139,250,0.12)_40%,transparent_70%)]" />
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={staggerContainer(0.12, 0.05)}
@@ -34,13 +34,13 @@ export default function Hero() {
           >
             UI/UX • Frontend • IT Support
           </motion.span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white hero-title font-display">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight font-display">
             {HERO_TITLE.split(" ").map((word, i) => (
               <motion.span
                 key={i}
                 custom={i}
                 variants={wordVariants}
-                className="inline-block mr-[0.25em]"
+                className="inline-block mr-[0.25em] hero-word-gradient"
               >
                 {word}
               </motion.span>

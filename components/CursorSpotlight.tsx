@@ -40,7 +40,7 @@ export default function CursorSpotlight() {
           width: 480,
           height: 480,
           background:
-            "radial-gradient(circle, rgba(120,119,198,0.12) 0%, rgba(120,119,198,0) 70%)",
+            "radial-gradient(circle, rgba(96,165,250,0.10) 0%, rgba(167,139,250,0.06) 40%, transparent 70%)",
         }}
       />
     </motion.div>

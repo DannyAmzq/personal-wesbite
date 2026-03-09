@@ -41,6 +41,8 @@ html {
   /* Accent (dark theme) */
   --accent: #60a5fa; /* blue-400 */
   --accent-foreground: #0b1220; /* near-black on bright accent */
+  /* Tertiary (dark theme) */
+  --tertiary: #a78bfa; /* violet-400 */
 }
 
 @theme inline {
@@ -48,6 +50,7 @@ html {
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-tertiary: var(--tertiary);
   --font-sans: var(--font-plus-jakarta-sans);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-instrument-serif);
@@ -60,6 +63,8 @@ html {
   /* Accent (light theme) */
   --accent: #2563eb; /* blue-600 */
   --accent-foreground: #f8fafc; /* near-white */
+  /* Tertiary (light theme) */
+  --tertiary: #7c3aed; /* violet-600 */
 }
 
 body {
@@ -68,10 +73,18 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Light-mode tweaks for the Hero section */
-[data-theme="light"] .hero-title {
-  /* Use near-black foreground in light mode */
-  color: var(--foreground);
+/* Hero word gradient — applied per-span so background-clip works with inline-block */
+.hero-word-gradient {
+  background: linear-gradient(135deg, #93c5fd 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+[data-theme="light"] .hero-word-gradient {
+  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 [data-theme="light"] .hero-secondary {
   color: var(--foreground);
