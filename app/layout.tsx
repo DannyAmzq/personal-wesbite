@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Plus_Jakarta_Sans, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import BackgroundDots from "@/components/BackgroundDots";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const plusJakartaSans = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta-sans",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -50,7 +51,7 @@ export default function RootLayout({
           } catch (e) {}
         `}</Script>
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}>
+      <body className={`${plusJakartaSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}>
         <BackgroundDots count={140} />
         <Navbar />
         {children}
