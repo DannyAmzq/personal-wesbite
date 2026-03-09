@@ -4,6 +4,18 @@ import { fadeInUp, staggerContainer, viewportOnce } from "@/lib/motion";
 import Link from "next/link";
 import MagneticButton from "@/components/MagneticButton";
 
+const HERO_TITLE = "Crafting clear, modern digital experiences";
+
+const wordVariants = {
+  hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { type: "spring" as const, stiffness: 120, damping: 20, delay: 0.05 + i * 0.07 },
+  }),
+};
+
 export default function Hero() {
   return (
     <section className="relative py-24 sm:py-28 md:py-32">
@@ -22,12 +34,18 @@ export default function Hero() {
           >
             UI/UX • Frontend • IT Support
           </motion.span>
-          <motion.h1
-            variants={fadeInUp(0.1, 14)}
-            className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white hero-title font-display"
-          >
-            Crafting clear, modern digital experiences
-          </motion.h1>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white hero-title font-display">
+            {HERO_TITLE.split(" ").map((word, i) => (
+              <motion.span
+                key={i}
+                custom={i}
+                variants={wordVariants}
+                className="inline-block mr-[0.25em]"
+              >
+                {word}
+              </motion.span>
+            ))}
+          </h1>
           <motion.p
             variants={fadeInUp(0.15, 18)}
             className="max-w-2xl text-base sm:text-lg text-zinc-300 muted"

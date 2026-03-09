@@ -4,6 +4,8 @@ import { Plus_Jakarta_Sans, Geist_Mono, Instrument_Serif } from "next/font/googl
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import BackgroundDots from "@/components/BackgroundDots";
+import ScrollProgress from "@/components/ScrollProgress";
+import CursorSpotlight from "@/components/CursorSpotlight";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
@@ -52,6 +54,8 @@ export default function RootLayout({
         `}</Script>
       </head>
       <body className={`${plusJakartaSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}>
+        <ScrollProgress />
+        <CursorSpotlight />
         <BackgroundDots count={140} />
         <Navbar />
         {children}

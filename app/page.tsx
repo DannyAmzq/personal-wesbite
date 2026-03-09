@@ -4,6 +4,7 @@ import Section from "@/components/Section";
 import StackedLogoMarquee from "@/components/StackedLogoMarquee";
 import CurrentlyReading from "@/components/CurrentlyReading";
 import MagneticButton from "@/components/MagneticButton";
+import TiltCard from "@/components/TiltCard";
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
         <Section id="work" title="Selected work">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="group relative overflow-hidden rounded-xl p-5 surface">
+              <TiltCard key={i} className="group relative overflow-hidden rounded-xl p-5 surface">
                 <div className="flex items-center justify-between">
                   <div>
                     <h3 className="text-[var(--foreground)] font-semibold">Project {i}</h3>
@@ -25,7 +26,7 @@ export default function Home() {
                     Case study
                   </span>
                 </div>
-              </div>
+              </TiltCard>
             ))}
           </div>
         </Section>
