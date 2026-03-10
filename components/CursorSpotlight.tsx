@@ -37,10 +37,10 @@ export default function CursorSpotlight() {
         style={{
           left: springX,
           top: springY,
-          width: 480,
-          height: 480,
+          width: 220,
+          height: 220,
           background:
-            "radial-gradient(circle, rgba(96,165,250,0.10) 0%, rgba(167,139,250,0.06) 40%, transparent 70%)",
+            "radial-gradient(circle, rgba(96,165,250,0.35) 0%, rgba(167,139,250,0.20) 45%, transparent 70%)",
         }}
       />
     </motion.div>

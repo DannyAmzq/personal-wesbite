@@ -7,10 +7,9 @@ import MagneticButton from "@/components/MagneticButton";
 const HERO_TITLE = "Crafting clear, modern digital experiences";
 
 const wordVariants = {
-  hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
+  hidden: { opacity: 0, filter: "blur(6px)" },
   show: (i: number) => ({
     opacity: 1,
-    y: 0,
     filter: "blur(0px)",
     transition: { type: "spring" as const, stiffness: 120, damping: 20, delay: 0.05 + i * 0.07 },
   }),
@@ -18,8 +17,8 @@ const wordVariants = {
 
 export default function Hero() {
   return (
-    <section className="relative py-24 sm:py-28 md:py-32">
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(60%_55%_at_50%_0%,rgba(96,165,250,0.18)_0%,rgba(167,139,250,0.12)_40%,transparent_70%)]" />
+    <section className="relative min-h-[calc(100vh-3.5rem)] flex flex-col justify-center py-24 sm:py-28 overflow-visible">
+      <div className="pointer-events-none absolute inset-x-0 -top-14 bottom-0 -z-10 bg-[radial-gradient(80%_75%_at_50%_0%,rgba(96,165,250,0.24)_0%,rgba(167,139,250,0.15)_42%,transparent_70%)]" />
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={staggerContainer(0.12, 0.05)}
@@ -34,13 +33,13 @@ export default function Hero() {
           >
             UI/UX • Frontend • IT Support
           </motion.span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight font-display">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight font-display hero-word-gradient">
             {HERO_TITLE.split(" ").map((word, i) => (
               <motion.span
                 key={i}
                 custom={i}
                 variants={wordVariants}
-                className="inline-block mr-[0.25em] hero-word-gradient"
+                className="inline mr-[0.25em]"
               >
                 {word}
               </motion.span>

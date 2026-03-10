@@ -73,18 +73,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Hero word gradient — applied per-span so background-clip works with inline-block */
+/* Hero heading color */
 .hero-word-gradient {
-  background: linear-gradient(135deg, #93c5fd 0%, #a78bfa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #c8916a;
 }
 [data-theme="light"] .hero-word-gradient {
-  background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #8b5e38;
 }
 [data-theme="light"] .hero-secondary {
   color: var(--foreground);
