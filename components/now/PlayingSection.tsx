@@ -1,7 +1,15 @@
 "use client";
 import { motion } from "framer-motion";
-import { games, type Game } from "@/lib/now-data";
 import { fadeInUp, staggerContainer, viewportOnce } from "@/lib/motion";
+
+export type Game = {
+  title: string;
+  cover?: string | null;
+  platform: string[];
+  genres: string[];
+  note?: string;
+  status: "playing" | "wishlist";
+};
 
 function GameCard({ game }: { game: Game }) {
   return (
@@ -35,7 +43,7 @@ function GameCard({ game }: { game: Game }) {
   );
 }
 
-export default function PlayingSection() {
+export default function PlayingSection({ games }: { games: Game[] }) {
   const current = games.filter((g) => g.status === "playing");
   const wishlist = games.filter((g) => g.status === "wishlist");
 

@@ -1,14 +1,33 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { client } from "@/sanity/lib/client";
+import { postsQuery } from "@/sanity/lib/queries";
 import { sortedPosts } from "@/lib/posts";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Blog | Danny Amezquita",
   description: "Thoughts on UX, frontend development, and IT.",
 };
 
-export default function BlogPage() {
-  const posts = sortedPosts();
+type PostPreview = {
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+  tags: string[];
+  readingTime: string;
+};
+
+export default async function BlogPage() {
+  let posts: PostPreview[] = [];
+  try {
+    posts = await client.fetch(postsQuery);
+  } catch {
+    // Fallback to static data
+    posts = sortedPosts();
+  }
 
   return (
     <main className="font-sans">

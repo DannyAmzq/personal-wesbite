@@ -1,7 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
-import { artists } from "@/lib/now-data";
 import { fadeInUp, staggerContainer, viewportOnce } from "@/lib/motion";
+
+export type Artist = {
+  name: string;
+  genres: string[];
+  note?: string;
+};
 
 const ARTIST_COLORS: Record<string, string> = {
   "The Midnight": "#6366f1",
@@ -9,7 +14,7 @@ const ARTIST_COLORS: Record<string, string> = {
   "Don Toliver": "#ec4899",
 };
 
-export default function ListeningSection() {
+export default function ListeningSection({ artists }: { artists: Artist[] }) {
   return (
     <div className="flex flex-col gap-6">
       <p className="text-sm muted max-w-lg">
@@ -30,7 +35,6 @@ export default function ListeningSection() {
               variants={fadeInUp(0)}
               className="flex flex-col gap-3 rounded-xl p-5 surface group"
             >
-              {/* Color swatch as avatar stand-in */}
               <div
                 className="h-10 w-10 rounded-full opacity-80"
                 style={{ background: color }}
