@@ -44,7 +44,7 @@ export default function Home() {
                     { name: "Frontend Dev" },
                     { name: "Accessibility" },
                     { name: "Performance" },
-                    { name: "IT Support" },
+                    { name: "Full-Stack Dev" },
                     { name: "Networking" },
                   ],
                   height: 36,
@@ -113,15 +113,14 @@ export default function Home() {
             <div className="flex flex-col gap-6 pt-2">
               <div className="flex flex-col gap-1">
                 <h3 className="text-xl font-semibold text-[var(--foreground)]">Danny Amezquita</h3>
-                <p className="text-sm font-medium text-[var(--accent)]">UX Engineer · Frontend Developer · IT Pro</p>
+                <p className="text-sm font-medium text-[var(--accent)]">UX Engineer · Frontend Developer · Software Engineer</p>
               </div>
               <p className="text-base leading-relaxed muted">
                 I'm a UI/UX designer and frontend developer who enjoys turning complex ideas into
-                simple, delightful interfaces. With a background in IT support, I bridge design,
-                engineering, and reliability to ship usable products.
+                simple, delightful interfaces. I bridge design, engineering, and reliability to ship usable products.
               </p>
               <div className="flex flex-wrap gap-2">
-                {["UI/UX Design", "Frontend Dev", "IT Support", "Based in Texas"].map((tag) => (
+                {["UI/UX Design", "Frontend Dev", "Software Engineer", "Based in Texas"].map((tag) => (
                   <span
                     key={tag}
                     className="text-xs rounded-full px-3 py-1 surface text-[color-mix(in_oklab,var(--foreground)_78%,transparent)]"

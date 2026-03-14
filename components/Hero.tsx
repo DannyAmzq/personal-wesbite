@@ -31,7 +31,7 @@ export default function Hero() {
             variants={fadeInUp(0.05, 10)}
             className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-zinc-300 shadow-sm backdrop-blur hero-badge"
           >
-            UI/UX • Frontend • IT Support
+            UI/UX • Frontend • Software Engineer
           </motion.span>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight font-display hero-word-gradient">
             {HERO_TITLE.split(" ").map((word, i) => (
