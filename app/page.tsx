@@ -1,10 +1,12 @@
 import Image from "next/image";
+import Link from "next/link";
 import Hero from "@/components/Hero";
 import Section from "@/components/Section";
 import StackedLogoMarquee from "@/components/StackedLogoMarquee";
 import CurrentlyReading from "@/components/CurrentlyReading";
 import MagneticButton from "@/components/MagneticButton";
 import TiltCard from "@/components/TiltCard";
+import { projects } from "@/lib/work";
 
 export default function Home() {
   return (
@@ -13,20 +15,27 @@ export default function Home() {
         <Hero />
         <Section id="work" title="Selected work">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[1, 2, 3, 4].map((i) => (
-              <TiltCard key={i} className="group relative overflow-hidden rounded-xl p-5 surface">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h3 className="text-[var(--foreground)] font-semibold">Project {i}</h3>
-                    <p className="text-sm muted">
-                      Short description of the project focusing on value and role.
-                    </p>
+            {projects.map((project) => (
+              <Link key={project.slug} href={`/work/${project.slug}`}>
+                <TiltCard className="group relative overflow-hidden rounded-xl p-5 surface h-full cursor-pointer hover:border-[color-mix(in_oklab,var(--foreground)_28%,transparent)] transition-colors">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex flex-col gap-1">
+                      <h3 className="text-[var(--foreground)] font-semibold group-hover:text-[var(--accent)] transition-colors">{project.title}</h3>
+                      <p className="text-sm muted">{project.tagline}</p>
+                      <div className="mt-2 flex flex-wrap gap-1.5">
+                        {project.tags.map((tag) => (
+                          <span key={tag} className="text-xs rounded-full px-2 py-0.5 surface text-[color-mix(in_oklab,var(--foreground)_65%,transparent)]">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <span className="shrink-0 text-xs rounded-full px-2 py-1 text-[color-mix(in_oklab,var(--foreground)_78%,transparent)] bg-[color-mix(in_oklab,var(--background)_80%,transparent)] border border-[color-mix(in_oklab,var(--foreground)_14%,transparent)]">
+                      {project.year}
+                    </span>
                   </div>
-                  <span className="text-xs rounded-full px-2 py-1 text-[color-mix(in_oklab,var(--foreground)_78%,transparent)] bg-[color-mix(in_oklab,var(--background)_80%,transparent)] border border-[color-mix(in_oklab,var(--foreground)_14%,transparent)]">
-                    Case study
-                  </span>
-                </div>
-              </TiltCard>
+                </TiltCard>
+              </Link>
             ))}
           </div>
         </Section>

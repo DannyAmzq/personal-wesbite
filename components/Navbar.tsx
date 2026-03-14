@@ -35,8 +35,8 @@ export default function Navbar() {
 
   const links = [
     { href: h("#work"), label: "Work" },
-    { href: h("#skills"), label: "Skills" },
-    { href: h("#about"), label: "About" },
+    { href: "/services", label: "Services" },
+    { href: "/blog", label: "Blog" },
     { href: "/now", label: "Now" },
     { href: h("#contact"), label: "Contact" },
   ];

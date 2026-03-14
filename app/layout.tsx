@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Plus_Jakarta_Sans, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Plus_Jakarta_Sans, Geist_Mono, Instrument_Serif, Zen_Loop } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import BackgroundDots from "@/components/BackgroundDots";
@@ -20,6 +20,12 @@ const geistMono = Geist_Mono({
 
 const instrumentSerif = Instrument_Serif({
   variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const zenLoop = Zen_Loop({
+  variable: "--font-zen-loop",
   subsets: ["latin"],
   weight: "400",
 });
@@ -53,7 +59,7 @@ export default function RootLayout({
           } catch (e) {}
         `}</Script>
       </head>
-      <body className={`${plusJakartaSans.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased overflow-x-hidden`}>
+      <body className={`${plusJakartaSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${zenLoop.variable} antialiased overflow-x-hidden`}>
         <ScrollProgress />
         <CursorSpotlight />
         <BackgroundDots count={140} />

@@ -3,8 +3,18 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { currentBook, bookLibrary, type Book } from "@/lib/now-data";
 import { fadeInUp, staggerContainer, viewportOnce } from "@/lib/motion";
+
+export type Book = {
+  title: string;
+  author: string;
+  cover?: string | null; // resolved URL (local path or Sanity CDN)
+  genres: string[];
+  note?: string;
+  progress?: number;
+  status: "reading" | "read" | "tbr";
+  finishedYear?: number;
+};
 
 function BookCard({ book }: { book: Book }) {
   return (
@@ -44,7 +54,12 @@ function BookCard({ book }: { book: Book }) {
   );
 }
 
-export default function ReadingSection() {
+type Props = {
+  currentBook: Book;
+  bookLibrary: Book[];
+};
+
+export default function ReadingSection({ currentBook, bookLibrary }: Props) {
   const barRef = useRef<HTMLDivElement>(null);
   const inView = useInView(barRef, { once: true, margin: "-80px" });
 
@@ -91,20 +106,22 @@ export default function ReadingSection() {
               </span>
             ))}
           </div>
-          <div ref={barRef} className="flex flex-col gap-1.5">
-            <div className="flex items-center justify-between text-xs muted">
-              <span>Progress</span>
-              <span className="font-medium text-[var(--foreground)]">{currentBook.progress}%</span>
+          {typeof currentBook.progress === "number" && (
+            <div ref={barRef} className="flex flex-col gap-1.5">
+              <div className="flex items-center justify-between text-xs muted">
+                <span>Progress</span>
+                <span className="font-medium text-[var(--foreground)]">{currentBook.progress}%</span>
+              </div>
+              <div className="h-1.5 w-full max-w-xs rounded-full bg-[color-mix(in_oklab,var(--foreground)_10%,transparent)] overflow-hidden">
+                <motion.div
+                  className="h-full rounded-full bg-[var(--accent)]"
+                  initial={{ width: 0 }}
+                  animate={inView ? { width: `${currentBook.progress}%` } : { width: 0 }}
+                  transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+                />
+              </div>
             </div>
-            <div className="h-1.5 w-full max-w-xs rounded-full bg-[color-mix(in_oklab,var(--foreground)_10%,transparent)] overflow-hidden">
-              <motion.div
-                className="h-full rounded-full bg-[var(--accent)]"
-                initial={{ width: 0 }}
-                animate={inView ? { width: `${currentBook.progress}%` } : { width: 0 }}
-                transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-              />
-            </div>
-          </div>
+          )}
           {currentBook.note && (
             <p className="text-sm italic text-[color-mix(in_oklab,var(--foreground)_60%,transparent)] max-w-sm border-l-2 border-[var(--accent)] pl-3">
               "{currentBook.note}"
