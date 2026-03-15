@@ -52,7 +52,7 @@ export default function Hero() {
             I design intuitive interfaces, build performant web apps, and support the systems that
             keep them running. Let's bring your product to life.
           </motion.p>
-          <motion.div variants={fadeInUp(0.2, 20)} className="flex gap-3">
+          <motion.div variants={fadeInUp(0.2, 20)} className="flex flex-wrap gap-3">
             <MagneticButton>
               <Link
                 href="#work"
