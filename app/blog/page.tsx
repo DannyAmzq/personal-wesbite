@@ -8,7 +8,7 @@ export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "Blog | Danny Amezquita",
-  description: "Thoughts on UX, frontend development, and IT.",
+  description: "Thoughts on UX and frontend development.",
 };
 
 type PostPreview = {

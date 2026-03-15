@@ -34,12 +34,12 @@ export const projects: Project[] = [
   {
     slug: "project-two",
     title: "Project Two",
-    tagline: "Internal IT ticketing dashboard for a mid-size company",
+    tagline: "Internal ticketing dashboard for a mid-size company",
     year: "2024",
-    role: "Frontend Developer & IT Consultant",
-    tags: ["Next.js", "TypeScript", "IT Support"],
+    role: "Frontend Developer",
+    tags: ["Next.js", "TypeScript", "Dashboard"],
     problem:
-      "The IT team was managing 200+ weekly tickets via email threads, causing missed SLAs and frustrated staff.",
+      "The team was managing 200+ weekly tickets via email threads, causing missed SLAs and frustrated staff.",
     solution:
       "Built a lightweight ticketing dashboard with Next.js, role-based views, and Slack notifications for escalations.",
     outcome:
