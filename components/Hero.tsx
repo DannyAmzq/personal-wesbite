@@ -33,7 +33,7 @@ export default function Hero() {
           >
             UI/UX • Frontend • Software Engineer
           </motion.span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight font-display hero-word-gradient">
+          <h1 className="w-full text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight font-display hero-word-gradient">
             {HERO_TITLE.split(" ").map((word, i) => (
               <motion.span
                 key={i}
@@ -47,7 +47,7 @@ export default function Hero() {
           </h1>
           <motion.p
             variants={fadeInUp(0.15, 18)}
-            className="max-w-2xl text-base sm:text-lg text-zinc-300 muted"
+            className="w-full max-w-2xl text-base sm:text-lg text-zinc-300 muted"
           >
             I design intuitive interfaces, build performant web apps, and support the systems that
             keep them running. Let's bring your product to life.
