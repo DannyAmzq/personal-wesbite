@@ -59,7 +59,7 @@ export default function RootLayout({
           } catch (e) {}
         `}</Script>
       </head>
-      <body className={`${plusJakartaSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${zenLoop.variable} antialiased`}>
+      <body className={`${plusJakartaSans.variable} ${geistMono.variable} ${instrumentSerif.variable} ${zenLoop.variable} antialiased overflow-x-hidden`}>
         <ScrollProgress />
         <CursorSpotlight />
         <BackgroundDots count={140} />

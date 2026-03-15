@@ -26,8 +26,6 @@ export const nowType = defineType({
   name: "siteNow",
   title: "Now",
   type: "document",
-  // Singleton — only one document of this type
-  __experimental_actions: ["update", "publish"],
   fields: [
     defineField({ name: "updatedAt", title: "Last updated", type: "date" }),
 
