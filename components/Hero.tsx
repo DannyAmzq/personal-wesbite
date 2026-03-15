@@ -4,7 +4,8 @@ import { fadeInUp, staggerContainer, viewportOnce } from "@/lib/motion";
 import Link from "next/link";
 import MagneticButton from "@/components/MagneticButton";
 
-const HERO_TITLE = "Crafting clear, modern digital experiences";
+const HERO_LINE1 = "Crafting clear,";
+const HERO_LINE2 = "modern digital experiences";
 
 const wordVariants = {
   hidden: { opacity: 0, filter: "blur(6px)" },
@@ -15,7 +16,27 @@ const wordVariants = {
   }),
 };
 
+function AnimatedWords({ words, startIndex = 0 }: { words: string[]; startIndex?: number }) {
+  return (
+    <>
+      {words.map((word, i) => (
+        <motion.span
+          key={i}
+          custom={startIndex + i}
+          variants={wordVariants}
+          className="inline mr-[0.25em]"
+        >
+          {word}
+        </motion.span>
+      ))}
+    </>
+  );
+}
+
 export default function Hero() {
+  const line1Words = HERO_LINE1.split(" ");
+  const line2Words = HERO_LINE2.split(" ");
+
   return (
     <section className="relative min-h-[calc(100vh-3.5rem)] flex flex-col justify-center py-24 sm:py-28 overflow-x-clip">
       <div className="pointer-events-none absolute inset-x-0 -top-14 bottom-0 -z-10 bg-[radial-gradient(80%_75%_at_50%_0%,rgba(96,165,250,0.24)_0%,rgba(167,139,250,0.15)_42%,transparent_70%)]" />
@@ -25,7 +46,7 @@ export default function Hero() {
           initial="hidden"
           whileInView="show"
           viewport={viewportOnce}
-          className="flex flex-col items-start gap-6"
+          className="flex flex-col items-start gap-6 w-full"
         >
           <motion.span
             variants={fadeInUp(0.05, 10)}
@@ -33,21 +54,18 @@ export default function Hero() {
           >
             UI/UX • Frontend • Software Engineer
           </motion.span>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight font-display hero-word-gradient">
-            {HERO_TITLE.split(" ").map((word, i) => (
-              <motion.span
-                key={i}
-                custom={i}
-                variants={wordVariants}
-                className="inline mr-[0.25em]"
-              >
-                {word}
-              </motion.span>
-            ))}
+          <h1 className="w-full max-w-full text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight font-display hero-word-gradient">
+            {/* On mobile: two explicit lines. On sm+: flows as one line */}
+            <span className="block sm:inline">
+              <AnimatedWords words={line1Words} startIndex={0} />
+            </span>
+            <span className="block sm:inline">
+              <AnimatedWords words={line2Words} startIndex={line1Words.length} />
+            </span>
           </h1>
           <motion.p
             variants={fadeInUp(0.15, 18)}
-            className="max-w-2xl text-base sm:text-lg text-zinc-300 muted"
+            className="w-full max-w-2xl text-base sm:text-lg text-zinc-300 muted"
           >
             I design intuitive interfaces, build performant web apps, and support the systems that
             keep them running. Let's bring your product to life.

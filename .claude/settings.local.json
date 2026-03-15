@@ -7,7 +7,16 @@
       "Bash(npm install)",
       "Bash(npm audit)",
       "Bash(npm audit fix --force)",
-      "Bash(timeout 15 npm run dev)"
+      "Bash(timeout 15 npm run dev)",
+      "Bash(node -e \"console.log\\(require.resolve\\(''react''\\)\\)\")",
+      "Bash(grep -r useEffectEvent C:UsersMrHonordevrepospersonal-wesbite.claudeworktreessleepy-bartiknode_modulesreactcjs --include=*.js -l)",
+      "Bash(xargs grep:*)",
+      "Bash(node -e \"const p = require\\(''''/c/Users/MrHonor/dev/repos/personal-wesbite/.claude/worktrees/sleepy-bartik/node_modules/react/package.json''''\\); console.log\\(JSON.stringify\\(p.exports, null, 2\\)\\)\")",
+      "Bash(node -e \"const p = require\\(''./node_modules/react/package.json''\\); console.log\\(JSON.stringify\\(p.exports?.[''./server''], null, 2\\)\\); console.log\\(''exports keys:'', Object.keys\\(p.exports || {}\\).slice\\(0,10\\)\\)\")",
+      "Bash(npm run:*)",
+      "Bash(gh pr:*)",
+      "Bash(gh repo:*)",
+      "Bash(gh auth:*)"
     ]
   }
 }

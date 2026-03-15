@@ -4,6 +4,11 @@ html {
   scroll-behavior: smooth;
   /* Reserve space for sticky navbar when scrolling to anchors */
   scroll-padding-top: 5rem;
+  /* Clip at the html level — overflow-x:hidden on body propagates to the
+     viewport in most browsers, so the body can still be wider than 100vw.
+     overflow-x:clip on html is NOT propagated, which truly prevents any
+     element from extending the page width on mobile. */
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {

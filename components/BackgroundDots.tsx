@@ -102,7 +102,7 @@ export default function BackgroundDots({
   return (
     <motion.div
       aria-hidden
-      className="fixed inset-0 -z-10 pointer-events-none"
+      className="fixed inset-0 -z-10 pointer-events-none overflow-hidden"
       style={{ x: reduce ? 0 : px, y: reduce ? 0 : py }}
     >
       {dots.map((d) => {
