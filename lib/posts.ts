@@ -12,22 +12,6 @@ export type Post = {
 
 export const posts: Post[] = [
   {
-    slug: "ux-and-it-better-together",
-    title: "UX and IT: Better Together",
-    description:
-      "Why having a background in IT support makes me a better UX designer — and vice versa.",
-    date: "2025-11-10",
-    tags: ["UX", "IT", "Career"],
-    readingTime: "4 min",
-    body: `Most designers never touch a server. Most IT folks never open Figma. I've done both, and the overlap is where the interesting work happens.
-
-When you understand how systems fail — really fail, at the infrastructure level — you design with a different kind of empathy. You stop assuming the network is always up. You think about offline states, error messages that are actually helpful, and flows that don't lose user data when something goes wrong.
-
-On the flip side, time spent in IT taught me to talk to non-technical stakeholders. That skill translates directly to presenting design rationale to engineers and product managers.
-
-If you're in IT and curious about design, or a designer curious about systems — cross the aisle. The perspective is worth it.`,
-  },
-  {
     slug: "building-fast-with-nextjs-and-tailwind",
     title: "Building Fast with Next.js and Tailwind",
     description:

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Resume | Danny Amezquita",
-  description: "UX Engineer, Frontend Developer, and IT Pro based in Texas.",
+  description: "UX Engineer and Frontend Developer based in Texas.",
 };
 
 const experience = [
@@ -14,16 +14,6 @@ const experience = [
       "Led redesign of core onboarding flow, reducing drop-off by 38%.",
       "Built reusable component library in React + Tailwind used across 3 products.",
       "Collaborated with PMs and engineers to ship bi-weekly design iterations.",
-    ],
-  },
-  {
-    company: "Another Company",
-    role: "IT Support Specialist",
-    period: "2022 — 2024",
-    bullets: [
-      "Managed helpdesk for 200+ employees across Windows and macOS environments.",
-      "Reduced ticket backlog by 45% by implementing a triage and escalation process.",
-      "Deployed and maintained internal network infrastructure and endpoint security.",
     ],
   },
   {
@@ -40,7 +30,7 @@ const experience = [
 const education = [
   {
     institution: "Your University",
-    degree: "B.S. in Information Technology",
+    degree: "B.S. in Computer Science",
     period: "2018 — 2022",
   },
 ];
@@ -48,7 +38,6 @@ const education = [
 const skills = [
   { category: "Design", items: ["Figma", "Wireframing", "Prototyping", "Design Systems", "Accessibility", "UI/UX Research"] },
   { category: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "HTML/CSS"] },
-  { category: "IT", items: ["Windows", "macOS", "Linux", "Networking", "Active Directory", "Endpoint Security", "Help Desk"] },
   { category: "Tools", items: ["Git", "GitHub", "Vercel", "Storybook", "Figma Dev Mode", "Slack", "Notion"] },
 ];
 
@@ -63,7 +52,7 @@ export default function ResumePage() {
             <h1 className="mt-2 text-4xl font-bold tracking-tight text-[var(--foreground)] font-display">
               Danny Amezquita
             </h1>
-            <p className="mt-1 muted">UX Engineer · Frontend Developer · IT Pro · Texas</p>
+            <p className="mt-1 muted">UX Engineer · Frontend Developer · Texas</p>
             <div className="mt-3 flex flex-wrap gap-4 text-sm muted">
               <a href="mailto:danny.amzq@gmail.com" className="hover:text-[var(--accent)] transition-colors">
                 danny.amzq@gmail.com

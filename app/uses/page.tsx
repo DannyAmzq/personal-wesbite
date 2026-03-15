@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Uses | Danny Amezquita",
-  description: "The tools, gear, and software I use daily for design, development, and IT.",
+  description: "The tools, gear, and software I use daily for design and development.",
 };
 
 const categories = [
@@ -33,11 +33,10 @@ const categories = [
     ],
   },
   {
-    name: "IT & Systems",
+    name: "Security & Systems",
     items: [
-      { name: "Windows 11 (VM)", note: "For IT support testing and compatibility checks." },
-      { name: "Wireshark", note: "Network troubleshooting and curiosity." },
       { name: "Bitwarden", note: "Password manager — open source, cross-platform." },
+      { name: "Wireshark", note: "Network troubleshooting and curiosity." },
     ],
   },
   {

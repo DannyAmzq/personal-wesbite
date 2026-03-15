@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Services | Danny Amezquita",
-  description: "Freelance UX design, frontend development, and IT consulting services.",
+  description: "Freelance UX design and frontend development services.",
 };
 
 const services = [
@@ -19,18 +19,12 @@ const services = [
       "I build what I design — pixel-perfect, performant web apps using Next.js, React, and Tailwind. No handoff friction.",
     deliverables: ["Next.js / React development", "Responsive, accessible UI", "Animation with Framer Motion", "Vercel deployment"],
   },
-  {
-    title: "IT Consulting",
-    description:
-      "Network setup, endpoint management, helpdesk triage, and systems that don't fall apart. Practical IT for small teams and businesses.",
-    deliverables: ["Network configuration", "Device setup & management", "Help desk process design", "Security baseline setup"],
-  },
 ];
 
 const faqs = [
   {
     q: "How do you charge?",
-    a: "Project-based for most design and development work. Hourly for IT consulting and ongoing retainer work. I'll send a clear estimate before anything starts.",
+    a: "Project-based for most design and development work. Hourly for ongoing retainer work. I'll send a clear estimate before anything starts.",
   },
   {
     q: "What's your availability?",
@@ -38,7 +32,7 @@ const faqs = [
   },
   {
     q: "Do you do ongoing work?",
-    a: "Yes — monthly retainers are available for clients who need regular design updates, frontend work, or IT support.",
+    a: "Yes — monthly retainers are available for clients who need regular design updates or ongoing frontend work.",
   },
   {
     q: "What does the process look like?",
