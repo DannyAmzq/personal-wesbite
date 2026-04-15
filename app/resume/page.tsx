@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Resume | Danny Amezquita",
+  title: "Resume",
   description: "UX Engineer and Frontend Developer based in Texas.",
 };
+
+// Flip to `true` once /public/resume.pdf is added.
+const RESUME_PDF_AVAILABLE = false;
 
 const experience = [
   {
@@ -65,19 +68,21 @@ export default function ResumePage() {
               </a>
             </div>
           </div>
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 inline-flex h-9 items-center gap-2 rounded-md border px-4 text-sm font-semibold shadow-sm transition-colors surface hover:bg-[color-mix(in_oklab,var(--background)_82%,transparent)]"
-          >
-            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
-            </svg>
-            Download PDF
-          </a>
+          {RESUME_PDF_AVAILABLE && (
+            <a
+              href="/resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 inline-flex h-9 items-center gap-2 rounded-md border px-4 text-sm font-semibold shadow-sm transition-colors surface hover:bg-[color-mix(in_oklab,var(--background)_82%,transparent)]"
+            >
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              Download PDF
+            </a>
+          )}
         </div>
 
         <div className="flex flex-col gap-14">

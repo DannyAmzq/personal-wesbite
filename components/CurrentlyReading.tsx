@@ -3,12 +3,23 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { currentBook } from "@/lib/now-data";
 
-export default function CurrentlyReading() {
+// Accepts both the Sanity-resolved shape (cover: string | null) and the
+// static fallback (cover?: string). Other fields are identical between both.
+export type CurrentlyReadingBook = {
+  title: string;
+  author: string;
+  cover?: string | null;
+  genres: string[];
+  note?: string;
+  progress?: number;
+  status: "reading" | "read" | "tbr";
+  finishedYear?: number;
+};
+
+export default function CurrentlyReading({ book }: { book: CurrentlyReadingBook }) {
   const barRef = useRef<HTMLDivElement>(null);
   const inView = useInView(barRef, { once: true, margin: "-80px" });
-  const book = currentBook;
 
   return (
     <div className="flex flex-col sm:flex-row gap-8 items-start">

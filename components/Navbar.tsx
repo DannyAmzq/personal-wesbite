@@ -129,13 +129,13 @@ export default function Navbar() {
                 </li>
               ))}
               <li>
-                <a
-                  href="#contact"
+                <Link
+                  href={h("#contact")}
                   onClick={close}
                   className="mt-1 inline-flex h-9 items-center justify-center rounded-md border border-[color-mix(in_oklab,var(--foreground)_16%,transparent)] bg-[color-mix(in_oklab,var(--background)_90%,transparent)] px-4 text-xs font-medium text-[var(--foreground)] hover:bg-[color-mix(in_oklab,var(--background)_86%,transparent)]"
                 >
                   Let's talk
-                </a>
+                </Link>
               </li>
             </ul>
           </motion.div>

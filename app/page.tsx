@@ -3,12 +3,30 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import Section from "@/components/Section";
 import StackedLogoMarquee from "@/components/StackedLogoMarquee";
-import CurrentlyReading from "@/components/CurrentlyReading";
+import CurrentlyReading, { type CurrentlyReadingBook } from "@/components/CurrentlyReading";
 import MagneticButton from "@/components/MagneticButton";
 import TiltCard from "@/components/TiltCard";
 import { projects } from "@/lib/work";
+import { client } from "@/sanity/lib/client";
+import { nowQuery } from "@/sanity/lib/queries";
+import { currentBook as staticCurrentBook } from "@/lib/now-data";
 
-export default function Home() {
+// Revalidate hourly so the "Currently reading" card stays fresh from Sanity.
+export const revalidate = 3600;
+
+export default async function Home() {
+  let nowData: { currentBook?: CurrentlyReadingBook } | null = null;
+  try {
+    nowData = await client.fetch(nowQuery);
+  } catch {
+    // Sanity unavailable — fall back to static data below.
+  }
+
+  const currentBook: CurrentlyReadingBook = nowData?.currentBook ?? {
+    ...staticCurrentBook,
+    cover: staticCurrentBook.cover ?? null,
+  };
+
   return (
     <>
       <main className="font-sans">
@@ -62,7 +80,7 @@ export default function Home() {
                   direction: "right",
                 },
                 {
-                  // Tools/logos row 1
+                  // Tools/logos row
                   items: [
                     { name: "Figma", src: "/logos/figma.svg" },
                     { name: "Framer", src: "/logos/framer.svg" },
@@ -80,14 +98,6 @@ export default function Home() {
                   speed: 44,
                   gap: 32,
                   direction: "left",
-                },
-                {
-                  // Tools/logos row 2
-                  items: [],
-                  height: 56,
-                  speed: 36,
-                  gap: 32,
-                  direction: "right",
                 },
               ]}
             />
@@ -142,7 +152,7 @@ export default function Home() {
           </div>
         </Section>
         <Section id="reading" title="Currently reading">
-          <CurrentlyReading />
+          <CurrentlyReading book={currentBook} />
         </Section>
         <Section id="contact" title="Let's build something">
           <div className="flex flex-col gap-8">

@@ -1,6 +1,6 @@
 "use client";
-import { useEffect, useRef } from "react";
-import { useMotionValue, useSpring, motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { useMotionValue, useSpring, motion, useReducedMotion } from "framer-motion";
 
 export default function CursorSpotlight() {
   const mouseX = useMotionValue(-600);
@@ -9,21 +9,27 @@ export default function CursorSpotlight() {
   const springX = useSpring(mouseX, { stiffness: 80, damping: 20, mass: 0.5 });
   const springY = useSpring(mouseY, { stiffness: 80, damping: 20, mass: 0.5 });
 
-  const isTouch = useRef(false);
+  const reduce = useReducedMotion();
+  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
-    isTouch.current = "ontouchstart" in window;
-    if (isTouch.current) return;
+    // Detect coarse/touch pointers after mount to avoid SSR mismatch.
+    const isTouch =
+      "ontouchstart" in window ||
+      (window.matchMedia && window.matchMedia("(pointer: coarse)").matches);
+    if (isTouch || reduce) return;
+
+    setEnabled(true);
 
     const move = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
     };
-    window.addEventListener("mousemove", move);
+    window.addEventListener("mousemove", move, { passive: true });
     return () => window.removeEventListener("mousemove", move);
-  }, [mouseX, mouseY]);
+  }, [mouseX, mouseY, reduce]);
 
-  if (typeof window !== "undefined" && "ontouchstart" in window) return null;
+  if (!enabled) return null;
 
   return (
     <motion.div
