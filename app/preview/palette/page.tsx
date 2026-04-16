@@ -336,6 +336,216 @@ function PaletteCard({ palette }: { palette: Palette }) {
   );
 }
 
+// ── Secondary candidates ──────────────────────────────────────────────────
+
+type Secondary = {
+  name: string;
+  tagline: string;
+  dark: string;
+  light: string;
+  undertone: "neutral" | "cool" | "warm" | "green";
+  why: string;
+};
+
+const SECONDARIES: Secondary[] = [
+  {
+    name: "Warm Stone",
+    tagline: "The safe pick · pure-but-warm gray",
+    dark: "#8a8580",
+    light: "#6b6560",
+    undertone: "neutral",
+    why:
+      "Pure neutral with a hint of warmth. Bridges blue and caramel without picking a side — lets both accents breathe.",
+  },
+  {
+    name: "Slate",
+    tagline: "The practical pick · slight blue undertone",
+    dark: "#7d8a96",
+    light: "#5a6775",
+    undertone: "cool",
+    why:
+      "Slight blue undertone makes the accent feel like family. Corporate-modern, calming, trustworthy.",
+  },
+  {
+    name: "Taupe",
+    tagline: "The tonal pick · slight brown undertone",
+    dark: "#9e8b7a",
+    light: "#6b5d50",
+    undertone: "warm",
+    why:
+      "Extends the caramel into a whole warm range. Earthy, cozy, analog — very Kinfolk-magazine.",
+  },
+  {
+    name: "Sage",
+    tagline: "The distinctive pick · muted green",
+    dark: "#8a9487",
+    light: "#5f6a5c",
+    undertone: "green",
+    why:
+      "Green is the classic companion to brown (nature palette) and cool enough to sit next to blue. Memorable and calm.",
+  },
+];
+
+function SecondaryCard({
+  secondary,
+  mode,
+}: {
+  secondary: Secondary;
+  mode: "dark" | "light";
+}) {
+  // Use the Phase 2 base palette as the surrounding context.
+  const base = mode === "dark" ? PHASE2_DARK : PHASE2_LIGHT;
+  const { background, foreground, accent, tertiary } = base;
+  const sec = mode === "dark" ? secondary.dark : secondary.light;
+
+  const surfaceBorder = mix(foreground, 0.14);
+  const muted = mix(foreground, 0.65);
+
+  return (
+    <div
+      style={{
+        background,
+        color: foreground,
+        borderRadius: 16,
+        padding: 22,
+        border: `1px solid ${surfaceBorder}`,
+        display: "flex",
+        flexDirection: "column",
+        gap: 18,
+      }}
+    >
+      {/* Name + hex */}
+      <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: 12 }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+          <p style={{ margin: 0, fontWeight: 700, fontSize: 15, color: foreground }}>
+            {secondary.name}
+          </p>
+          <p style={{ margin: 0, fontSize: 11, color: muted }}>{secondary.tagline}</p>
+        </div>
+        <span
+          style={{
+            fontFamily: "var(--font-geist-mono), ui-monospace",
+            fontSize: 11,
+            color: muted,
+          }}
+        >
+          {sec}
+        </span>
+      </div>
+
+      {/* Big swatch with the three accents layered on it */}
+      <div
+        style={{
+          position: "relative",
+          height: 88,
+          borderRadius: 10,
+          background: sec,
+          border: `1px solid ${surfaceBorder}`,
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: 12,
+          }}
+        >
+          <span style={{ width: 28, height: 28, borderRadius: 999, background: accent }} />
+          <span style={{ width: 28, height: 28, borderRadius: 999, background: tertiary }} />
+          <span style={{ width: 28, height: 28, borderRadius: 999, background: foreground }} />
+        </div>
+      </div>
+
+      {/* Real-world usage samples */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        {/* Muted text + divider */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+          <p style={{ margin: 0, fontSize: 13, color: sec }}>
+            Muted body text uses the secondary at full opacity for readable low-priority copy.
+          </p>
+          <div style={{ height: 1, background: sec, opacity: 0.4 }} />
+        </div>
+
+        {/* Tag pills using secondary as border + text */}
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+          {["UI/UX", "Frontend", "2025"].map((tag) => (
+            <span
+              key={tag}
+              style={{
+                fontSize: 11,
+                padding: "2px 10px",
+                borderRadius: 999,
+                border: `1px solid ${sec}`,
+                color: sec,
+                background: "transparent",
+              }}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+
+        {/* Surface card using secondary as border */}
+        <div
+          style={{
+            padding: 12,
+            borderRadius: 10,
+            border: `1px solid ${mix(foreground, 0.08)}`,
+            borderLeft: `3px solid ${sec}`,
+            background: mix(foreground, 0.04),
+            display: "flex",
+            flexDirection: "column",
+            gap: 4,
+          }}
+        >
+          <p style={{ margin: 0, fontSize: 12, fontWeight: 600, color: foreground }}>
+            Currently reading
+          </p>
+          <p style={{ margin: 0, fontSize: 11, color: sec }}>Total Recall · Arnold Schwarzenegger</p>
+        </div>
+
+        {/* Progress bar with secondary as track */}
+        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          <div
+            style={{ display: "flex", justifyContent: "space-between", fontSize: 10, color: sec }}
+          >
+            <span>Progress</span>
+            <span style={{ color: foreground, fontWeight: 600 }}>90%</span>
+          </div>
+          <div
+            style={{
+              height: 4,
+              borderRadius: 999,
+              background: mix(foreground, 0.08),
+              overflow: "hidden",
+            }}
+          >
+            <div style={{ height: "100%", width: "90%", background: sec }} />
+          </div>
+        </div>
+      </div>
+
+      {/* Why */}
+      <p
+        style={{
+          margin: 0,
+          fontSize: 11,
+          lineHeight: 1.6,
+          color: muted,
+          paddingTop: 10,
+          borderTop: `1px solid ${mix(foreground, 0.08)}`,
+        }}
+      >
+        {secondary.why}
+      </p>
+    </div>
+  );
+}
+
 // ── Page ───────────────────────────────────────────────────────────────────
 
 export default function PalettePreviewPage() {
@@ -464,6 +674,83 @@ export default function PalettePreviewPage() {
           >
             <PaletteCard palette={CURRENT_LIGHT} />
             <PaletteCard palette={PHASE2_LIGHT} />
+          </div>
+        </section>
+
+        {/* Secondary candidates */}
+        <section style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            <h2
+              style={{
+                margin: 0,
+                fontSize: 12,
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                color: "rgba(233,230,223,0.55)",
+              }}
+            >
+              Secondary candidates
+            </h2>
+            <p
+              style={{
+                margin: 0,
+                fontSize: 14,
+                color: "rgba(233,230,223,0.7)",
+                maxWidth: 680,
+                lineHeight: 1.6,
+              }}
+            >
+              A secondary is support-role: borders, dividers, muted text, tag pills, progress-bar
+              tracks. It shouldn't compete with the blue or caramel — it should make them sing.
+              Each card below drops the candidate into the Phase 2 context (blue accent + caramel
+              tertiary) so you see how it plays in the full palette.
+            </p>
+          </div>
+
+          <h3
+            style={{
+              margin: "12px 0 0",
+              fontSize: 11,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "rgba(233,230,223,0.4)",
+            }}
+          >
+            Dark mode
+          </h3>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+              gap: 16,
+            }}
+          >
+            {SECONDARIES.map((s) => (
+              <SecondaryCard key={`d-${s.name}`} secondary={s} mode="dark" />
+            ))}
+          </div>
+
+          <h3
+            style={{
+              margin: "12px 0 0",
+              fontSize: 11,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "rgba(233,230,223,0.4)",
+            }}
+          >
+            Light mode
+          </h3>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+              gap: 16,
+            }}
+          >
+            {SECONDARIES.map((s) => (
+              <SecondaryCard key={`l-${s.name}`} secondary={s} mode="light" />
+            ))}
           </div>
         </section>
 
