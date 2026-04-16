@@ -546,6 +546,300 @@ function SecondaryCard({
   );
 }
 
+// ── Head-to-head mockup (Taupe vs Slate) ──────────────────────────────────
+
+function HomepageMockup({
+  base,
+  secondary,
+  label,
+  stanceLine,
+}: {
+  base: Palette;
+  secondary: string;
+  label: string;
+  stanceLine: string;
+}) {
+  const { background, foreground, accent, accentForeground, tertiary } = base;
+  const surface = mix(foreground, base.mode === "dark" ? 0.05 : 0.04);
+  const surfaceBorder = mix(foreground, 0.12);
+
+  return (
+    <div
+      style={{
+        background,
+        color: foreground,
+        borderRadius: 20,
+        padding: 28,
+        border: `1px solid ${surfaceBorder}`,
+        display: "flex",
+        flexDirection: "column",
+        gap: 24,
+      }}
+    >
+      {/* Label */}
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+        <span
+          style={{
+            fontSize: 11,
+            fontWeight: 700,
+            letterSpacing: "0.2em",
+            textTransform: "uppercase",
+            color: secondary,
+          }}
+        >
+          {label}
+        </span>
+        <span
+          style={{
+            fontFamily: "var(--font-geist-mono), ui-monospace",
+            fontSize: 10,
+            color: mix(foreground, 0.5),
+          }}
+        >
+          {secondary}
+        </span>
+      </div>
+
+      {/* Stance statement */}
+      <p
+        style={{
+          margin: 0,
+          fontSize: 12,
+          lineHeight: 1.5,
+          fontStyle: "italic",
+          color: mix(foreground, 0.7),
+          paddingLeft: 10,
+          borderLeft: `2px solid ${secondary}`,
+        }}
+      >
+        {stanceLine}
+      </p>
+
+      {/* Fake navbar */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          paddingBottom: 12,
+          borderBottom: `1px solid ${mix(foreground, 0.1)}`,
+        }}
+      >
+        <span style={{ fontFamily: "var(--font-instrument-serif), serif", fontSize: 15, color: foreground }}>
+          Danny Amezquita
+        </span>
+        <div style={{ display: "flex", gap: 14, fontSize: 11, color: secondary }}>
+          <span>Work</span>
+          <span>Now</span>
+          <span>Contact</span>
+        </div>
+      </div>
+
+      {/* Hero block */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        <span
+          style={{
+            alignSelf: "flex-start",
+            padding: "3px 10px",
+            borderRadius: 999,
+            border: `1px solid ${secondary}`,
+            fontSize: 10,
+            color: secondary,
+          }}
+        >
+          UI/UX • Frontend • Software Engineer
+        </span>
+        <h2
+          style={{
+            margin: 0,
+            fontFamily: "var(--font-instrument-serif), serif",
+            fontSize: 34,
+            lineHeight: 1.05,
+            fontWeight: 400,
+            backgroundImage: `linear-gradient(120deg, ${accent} 0%, ${tertiary} 100%)`,
+            WebkitBackgroundClip: "text",
+            backgroundClip: "text",
+            color: "transparent",
+          }}
+        >
+          Crafting clear, modern digital experiences
+        </h2>
+        <p style={{ margin: 0, fontSize: 12, lineHeight: 1.6, color: secondary, maxWidth: 340 }}>
+          I design intuitive interfaces, build performant web apps, and support the systems that
+          keep them running.
+        </p>
+        <div style={{ display: "flex", gap: 8, marginTop: 4 }}>
+          <span
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              height: 30,
+              padding: "0 14px",
+              borderRadius: 6,
+              background: accent,
+              color: accentForeground,
+              fontSize: 11,
+              fontWeight: 600,
+            }}
+          >
+            View work
+          </span>
+          <span
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              height: 30,
+              padding: "0 14px",
+              borderRadius: 6,
+              border: `1px solid ${secondary}`,
+              color: foreground,
+              fontSize: 11,
+              fontWeight: 600,
+            }}
+          >
+            Contact me
+          </span>
+        </div>
+      </div>
+
+      {/* Project card */}
+      <div
+        style={{
+          padding: 16,
+          borderRadius: 12,
+          background: surface,
+          border: `1px solid ${surfaceBorder}`,
+          display: "flex",
+          flexDirection: "column",
+          gap: 10,
+        }}
+      >
+        <div
+          style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}
+        >
+          <div>
+            <p style={{ margin: 0, fontWeight: 600, color: foreground, fontSize: 14 }}>Project One</p>
+            <p style={{ margin: 0, fontSize: 12, color: secondary }}>
+              A marketing site with motion
+            </p>
+          </div>
+          <span
+            style={{
+              fontSize: 10,
+              padding: "2px 8px",
+              borderRadius: 999,
+              border: `1px solid ${secondary}`,
+              color: secondary,
+            }}
+          >
+            2025
+          </span>
+        </div>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
+          {["UI/UX", "Next.js", "Framer"].map((t) => (
+            <span
+              key={t}
+              style={{
+                fontSize: 10,
+                padding: "2px 8px",
+                borderRadius: 999,
+                border: `1px solid ${secondary}`,
+                color: secondary,
+              }}
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Currently reading */}
+      <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+        <div
+          style={{
+            flexShrink: 0,
+            width: 52,
+            height: 78,
+            borderRadius: 6,
+            background: mix(foreground, 0.1),
+            border: `1px solid ${surfaceBorder}`,
+          }}
+        />
+        <div style={{ display: "flex", flexDirection: "column", gap: 8, flex: 1 }}>
+          <span
+            style={{
+              alignSelf: "flex-start",
+              fontSize: 10,
+              padding: "2px 8px",
+              borderRadius: 999,
+              border: `1px solid ${surfaceBorder}`,
+              color: secondary,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 5,
+            }}
+          >
+            <span style={{ width: 5, height: 5, borderRadius: 999, background: accent }} />
+            Currently reading
+          </span>
+          <p style={{ margin: 0, fontSize: 13, fontWeight: 600, color: foreground }}>
+            Total Recall
+          </p>
+          <p style={{ margin: 0, fontSize: 11, color: secondary }}>Arnold Schwarzenegger</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 3, marginTop: 2 }}>
+            <div
+              style={{ display: "flex", justifyContent: "space-between", fontSize: 10, color: secondary }}
+            >
+              <span>Progress</span>
+              <span style={{ color: foreground, fontWeight: 600 }}>90%</span>
+            </div>
+            <div
+              style={{
+                height: 3,
+                borderRadius: 999,
+                background: mix(foreground, 0.08),
+                overflow: "hidden",
+              }}
+            >
+              <div style={{ height: "100%", width: "90%", background: accent }} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Skills row */}
+      <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        <span
+          style={{
+            fontSize: 10,
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+            color: secondary,
+          }}
+        >
+          Skills & tools
+        </span>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 5 }}>
+          {["UI/UX Design", "Frontend Dev", "Performance", "Accessibility"].map((s) => (
+            <span
+              key={s}
+              style={{
+                fontSize: 10,
+                padding: "2px 10px",
+                borderRadius: 999,
+                border: `1px solid ${secondary}`,
+                color: foreground,
+              }}
+            >
+              {s}
+            </span>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Page ───────────────────────────────────────────────────────────────────
 
 export default function PalettePreviewPage() {
@@ -751,6 +1045,100 @@ export default function PalettePreviewPage() {
             {SECONDARIES.map((s) => (
               <SecondaryCard key={`l-${s.name}`} secondary={s} mode="light" />
             ))}
+          </div>
+        </section>
+
+        {/* Head-to-head: Taupe vs Slate */}
+        <section style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+            <h2
+              style={{
+                margin: 0,
+                fontSize: 12,
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+                color: "rgba(233,230,223,0.55)",
+              }}
+            >
+              Head-to-head: Taupe vs Slate
+            </h2>
+            <p
+              style={{
+                margin: 0,
+                fontSize: 14,
+                color: "rgba(233,230,223,0.7)",
+                maxWidth: 680,
+                lineHeight: 1.6,
+              }}
+            >
+              Same homepage mockup rendered with each secondary fully applied to navbar links,
+              muted text, chip borders, skill pills, and the "2025" badge. The key question:{" "}
+              <em>where does your eye land first?</em>
+            </p>
+          </div>
+
+          <h3
+            style={{
+              margin: "12px 0 0",
+              fontSize: 11,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "rgba(233,230,223,0.4)",
+            }}
+          >
+            Dark mode
+          </h3>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(420px, 1fr))",
+              gap: 20,
+            }}
+          >
+            <HomepageMockup
+              base={PHASE2_DARK}
+              secondary="#9e8b7a"
+              label="Taupe"
+              stanceLine="Everything warm. The blue becomes the standout — CTAs and interactive moments draw the eye first."
+            />
+            <HomepageMockup
+              base={PHASE2_DARK}
+              secondary="#7d8a96"
+              label="Slate"
+              stanceLine="Everything cool except caramel. The hero gradient and warm accents become the personality moments."
+            />
+          </div>
+
+          <h3
+            style={{
+              margin: "12px 0 0",
+              fontSize: 11,
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "rgba(233,230,223,0.4)",
+            }}
+          >
+            Light mode
+          </h3>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(420px, 1fr))",
+              gap: 20,
+            }}
+          >
+            <HomepageMockup
+              base={PHASE2_LIGHT}
+              secondary="#6b5d50"
+              label="Taupe"
+              stanceLine="Warm on warm. Magazine-editorial feel. The blue CTA reads as the call-to-action without question."
+            />
+            <HomepageMockup
+              base={PHASE2_LIGHT}
+              secondary="#5a6775"
+              label="Slate"
+              stanceLine="Cool neutrals let the caramel hero shine. Classic portfolio poise with personality in the warm moments."
+            />
           </div>
         </section>
 
