@@ -132,7 +132,7 @@ export default async function Home() {
             <div className="flex flex-col gap-6 pt-2">
               <div className="flex flex-col gap-1">
                 <h3 className="text-xl font-semibold text-[var(--foreground)]">Danny Amezquita</h3>
-                <p className="text-sm font-medium text-[var(--accent)]">UX Engineer · Frontend Developer · Software Engineer</p>
+                <p className="text-sm font-medium text-[var(--accent)]">UX Engineer & Front End Developer</p>
               </div>
               <p className="text-base leading-relaxed muted">
                 I'm a UI/UX designer and frontend developer who enjoys turning complex ideas into
