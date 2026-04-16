@@ -39,7 +39,13 @@ export default function Hero() {
 
   return (
     <section className="relative min-h-[calc(100vh-3.5rem)] flex flex-col justify-center py-24 sm:py-28 overflow-x-clip">
-      <div className="pointer-events-none absolute inset-x-0 -top-14 bottom-0 -z-10 bg-[radial-gradient(80%_75%_at_50%_0%,rgba(96,165,250,0.24)_0%,rgba(167,139,250,0.15)_42%,transparent_70%)]" />
+      <div
+        className="pointer-events-none absolute inset-x-0 -top-14 bottom-0 -z-10"
+        style={{
+          background:
+            "radial-gradient(80% 75% at 50% 0%, color-mix(in oklab, var(--accent) 24%, transparent) 0%, color-mix(in oklab, var(--tertiary) 15%, transparent) 42%, transparent 70%)",
+        }}
+      />
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={staggerContainer(0.12, 0.05)}

@@ -46,7 +46,7 @@ export default function CursorSpotlight() {
           width: 220,
           height: 220,
           background:
-            "radial-gradient(circle, rgba(96,165,250,0.35) 0%, rgba(167,139,250,0.20) 45%, transparent 70%)",
+            "radial-gradient(circle, color-mix(in oklab, var(--accent) 35%, transparent) 0%, color-mix(in oklab, var(--tertiary) 20%, transparent) 45%, transparent 70%)",
         }}
       />
     </motion.div>

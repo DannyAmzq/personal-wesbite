@@ -41,13 +41,16 @@ html {
 
 /* Default to dark mode via CSS variables */
 :root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  /* Accent (dark theme) */
-  --accent: #60a5fa; /* blue-400 */
-  --accent-foreground: #0b1220; /* near-black on bright accent */
-  /* Tertiary (dark theme) */
-  --tertiary: #a78bfa; /* violet-400 */
+  /* Phase 2 palette — blue · caramel · taupe */
+  --background: #0c0d10; /* warm graphite */
+  --foreground: #e9e6df; /* warm off-white */
+  /* Accent — desaturated blue */
+  --accent: #6aa1ff;
+  --accent-foreground: #0a1428;
+  /* Tertiary — caramel / cognac */
+  --tertiary: #c08a5a;
+  /* Secondary — taupe (support role: borders, muted text, dividers) */
+  --secondary: #9e8b7a;
 }
 
 @theme inline {
@@ -56,6 +59,7 @@ html {
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
   --color-tertiary: var(--tertiary);
+  --color-secondary: var(--secondary);
   --font-sans: var(--font-plus-jakarta-sans);
   --font-mono: var(--font-geist-mono);
   --font-display: var(--font-instrument-serif);
@@ -63,13 +67,15 @@ html {
 
 /* Light theme overrides when opt-in via attribute */
 [data-theme="light"] {
-  --background: #ffffff;
-  --foreground: #171717;
-  /* Accent (light theme) */
-  --accent: #2563eb; /* blue-600 */
-  --accent-foreground: #f8fafc; /* near-white */
-  /* Tertiary (light theme) */
-  --tertiary: #7c3aed; /* violet-600 */
+  --background: #f6f1e8; /* paper cream */
+  --foreground: #1c1a17; /* warm near-black */
+  /* Accent — denim blue */
+  --accent: #2a5fbf;
+  --accent-foreground: #f8fafc;
+  /* Tertiary — walnut */
+  --tertiary: #8b5a2b;
+  /* Secondary — taupe (light) */
+  --secondary: #6b5d50;
 }
 
 body {
@@ -78,12 +84,12 @@ body {
   font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
-/* Hero heading color */
+/* Hero heading — real gradient (blue → caramel) */
 .hero-word-gradient {
-  color: #c8916a;
-}
-[data-theme="light"] .hero-word-gradient {
-  color: #8b5e38;
+  background-image: linear-gradient(120deg, var(--accent) 0%, var(--tertiary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 [data-theme="light"] .hero-secondary {
   color: var(--foreground);
