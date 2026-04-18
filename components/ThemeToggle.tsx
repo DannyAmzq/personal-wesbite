@@ -40,7 +40,9 @@ export default function ThemeToggle() {
       applyTheme(next);
       try {
         localStorage.setItem("theme", next);
-      } catch {}
+      } catch {
+        /* ignore */
+      }
     };
 
     if (reduce || !("startViewTransition" in document)) {

@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import BackgroundDots from "@/components/BackgroundDots";
 import ScrollProgress from "@/components/ScrollProgress";
 import CursorSpotlight from "@/components/CursorSpotlight";
+import SiteEnhancements from "@/components/SiteEnhancements";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta-sans",
@@ -95,6 +96,7 @@ export default function RootLayout({
         <BackgroundDots count={140} />
         <Navbar />
         {children}
+        <SiteEnhancements />
       </body>
     </html>
   );

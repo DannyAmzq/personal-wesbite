@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { fadeInUp, staggerContainer } from "@/lib/motion";
 import Link from "next/link";
 import MagneticButton from "@/components/MagneticButton";
+import PresenceBadge from "@/components/PresenceBadge";
 
 const HERO_LINE1 = "Interfaces with taste.";
 const HERO_LINE2 = "Systems that don't fall over.";
@@ -67,12 +68,12 @@ export default function Hero() {
           animate="show"
           className="flex flex-col items-start gap-6 w-full"
         >
-          <motion.span
-            variants={fadeInUp(0.05, 10)}
-            className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-zinc-300 shadow-sm backdrop-blur hero-badge"
-          >
-            UX Engineer & Front End Developer
-          </motion.span>
+          <motion.div variants={fadeInUp(0.05, 10)} className="flex flex-wrap items-center gap-2">
+            <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-zinc-300 shadow-sm backdrop-blur hero-badge">
+              UX Engineer & Front End Developer
+            </span>
+            <PresenceBadge />
+          </motion.div>
           <h1 className="w-full max-w-full text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight font-display hero-word-gradient">
             {/* On mobile: two explicit lines. On sm+: flows as one line */}
             <span className="block sm:inline">
