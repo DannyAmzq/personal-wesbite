@@ -163,62 +163,78 @@ export default function SiteEnhancements() {
   }, [router, showCheats]);
 
   return (
-    <AnimatePresence>
-      {showCheats && (
-        <motion.div
-          key="cheats-backdrop"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.15 }}
-          onClick={() => setShowCheats(false)}
-          className="fixed inset-0 z-[60] grid place-items-center bg-black/40 backdrop-blur-sm p-4"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Keyboard shortcuts"
-        >
+    <>
+      <button
+        type="button"
+        onClick={() => setShowCheats(true)}
+        aria-label="Show keyboard shortcuts"
+        className={`fixed bottom-4 right-4 z-40 hidden lg:inline-flex items-center gap-1.5 rounded-full border border-[color-mix(in_oklab,var(--foreground)_14%,transparent)] bg-[var(--background)]/80 px-3 py-1.5 text-xs text-[var(--secondary)] shadow-sm backdrop-blur transition hover:text-[var(--foreground)] hover:border-[color-mix(in_oklab,var(--foreground)_28%,transparent)] ${
+          showCheats ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+      >
+        <span>Press</span>
+        <kbd className="inline-flex min-w-[20px] justify-center rounded border border-[color-mix(in_oklab,var(--foreground)_18%,transparent)] bg-[color-mix(in_oklab,var(--foreground)_5%,transparent)] px-1.5 font-mono text-[var(--foreground)]">
+          ?
+        </kbd>
+        <span>for shortcuts</span>
+      </button>
+      <AnimatePresence>
+        {showCheats && (
           <motion.div
-            key="cheats"
-            initial={{ opacity: 0, y: 8, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 8, scale: 0.98 }}
-            transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
-            onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-md rounded-2xl border border-[color-mix(in_oklab,var(--foreground)_14%,transparent)] bg-[var(--background)] p-6 shadow-2xl"
+            key="cheats-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.15 }}
+            onClick={() => setShowCheats(false)}
+            className="fixed inset-0 z-[60] grid place-items-center bg-black/40 backdrop-blur-sm p-4"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Keyboard shortcuts"
           >
-            <h2 className="text-lg font-semibold text-[var(--foreground)]">
-              Keyboard shortcuts
-            </h2>
-            <p className="mt-1 text-sm text-[var(--secondary)]">
-              Press a key to navigate. Esc or click outside to close.
-            </p>
-            <ul className="mt-4 flex flex-col gap-2.5">
-              {SHORTCUTS.map((s) => (
-                <li
-                  key={s.action}
-                  className="flex items-center justify-between gap-4 text-sm"
-                >
-                  <span className="text-[var(--foreground)]">{s.action}</span>
-                  <span className="flex items-center gap-1.5">
-                    {s.keys.map((k, i) => (
-                      <span key={i} className="flex items-center gap-1.5">
-                        {i > 0 && (
-                          <span className="text-[10px] uppercase tracking-widest text-[var(--secondary)]">
-                            then
-                          </span>
-                        )}
-                        <kbd className="inline-flex min-w-[24px] justify-center rounded border border-[color-mix(in_oklab,var(--foreground)_18%,transparent)] bg-[color-mix(in_oklab,var(--foreground)_5%,transparent)] px-2 py-0.5 font-mono text-xs text-[var(--foreground)] shadow-sm">
-                          {k}
-                        </kbd>
-                      </span>
-                    ))}
-                  </span>
-                </li>
-              ))}
-            </ul>
+            <motion.div
+              key="cheats"
+              initial={{ opacity: 0, y: 8, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 8, scale: 0.98 }}
+              transition={{ duration: 0.18, ease: [0.16, 1, 0.3, 1] }}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-md rounded-2xl border border-[color-mix(in_oklab,var(--foreground)_14%,transparent)] bg-[var(--background)] p-6 shadow-2xl"
+            >
+              <h2 className="text-lg font-semibold text-[var(--foreground)]">
+                Keyboard shortcuts
+              </h2>
+              <p className="mt-1 text-sm text-[var(--secondary)]">
+                Press a key to navigate. Esc or click outside to close.
+              </p>
+              <ul className="mt-4 flex flex-col gap-2.5">
+                {SHORTCUTS.map((s) => (
+                  <li
+                    key={s.action}
+                    className="flex items-center justify-between gap-4 text-sm"
+                  >
+                    <span className="text-[var(--foreground)]">{s.action}</span>
+                    <span className="flex items-center gap-1.5">
+                      {s.keys.map((k, i) => (
+                        <span key={i} className="flex items-center gap-1.5">
+                          {i > 0 && (
+                            <span className="text-[10px] uppercase tracking-widest text-[var(--secondary)]">
+                              then
+                            </span>
+                          )}
+                          <kbd className="inline-flex min-w-[24px] justify-center rounded border border-[color-mix(in_oklab,var(--foreground)_18%,transparent)] bg-[color-mix(in_oklab,var(--foreground)_5%,transparent)] px-2 py-0.5 font-mono text-xs text-[var(--foreground)] shadow-sm">
+                            {k}
+                          </kbd>
+                        </span>
+                      ))}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
