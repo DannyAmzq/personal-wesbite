@@ -3,7 +3,7 @@ import Section from "@/components/Section";
 import ReadingSection from "@/components/now/ReadingSection";
 import ListeningSection from "@/components/now/ListeningSection";
 import PlayingSection from "@/components/now/PlayingSection";
-import { client } from "@/sanity/lib/client";
+import { client, isSanityConfigured } from "@/sanity/lib/client";
 import { nowQuery } from "@/sanity/lib/queries";
 // Fallback static data while Sanity is being set up
 import {
@@ -22,10 +22,12 @@ export const metadata: Metadata = {
 
 export default async function NowPage() {
   let nowData = null;
-  try {
-    nowData = await client.fetch(nowQuery);
-  } catch {
-    // Sanity not yet configured — static fallback used below
+  if (isSanityConfigured) {
+    try {
+      nowData = await client.fetch(nowQuery);
+    } catch {
+      // Sanity reachable but errored — static fallback used below
+    }
   }
 
   const currentBook = nowData?.currentBook ?? {

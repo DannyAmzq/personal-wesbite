@@ -3,7 +3,9 @@ import { createClient } from "next-sanity";
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "placeholder";
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production";
 
-if (projectId === "placeholder" && process.env.NODE_ENV !== "production") {
+export const isSanityConfigured = projectId !== "placeholder";
+
+if (!isSanityConfigured && process.env.NODE_ENV !== "production") {
   console.warn(
     "[sanity] NEXT_PUBLIC_SANITY_PROJECT_ID is not set — falling back to static content. " +
       "Set it in .env.local to enable the CMS."

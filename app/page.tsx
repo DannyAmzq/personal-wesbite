@@ -7,7 +7,7 @@ import CurrentlyReading, { type CurrentlyReadingBook } from "@/components/Curren
 import MagneticButton from "@/components/MagneticButton";
 import TiltCard from "@/components/TiltCard";
 import { projects } from "@/lib/work";
-import { client } from "@/sanity/lib/client";
+import { client, isSanityConfigured } from "@/sanity/lib/client";
 import { nowQuery } from "@/sanity/lib/queries";
 import { currentBook as staticCurrentBook } from "@/lib/now-data";
 
@@ -16,10 +16,12 @@ export const revalidate = 3600;
 
 export default async function Home() {
   let nowData: { currentBook?: CurrentlyReadingBook } | null = null;
-  try {
-    nowData = await client.fetch(nowQuery);
-  } catch {
-    // Sanity unavailable — fall back to static data below.
+  if (isSanityConfigured) {
+    try {
+      nowData = await client.fetch(nowQuery);
+    } catch {
+      // Sanity reachable but errored — fall back to static data below.
+    }
   }
 
   const currentBook: CurrentlyReadingBook = nowData?.currentBook ?? {
