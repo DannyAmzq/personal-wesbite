@@ -69,12 +69,12 @@ export default function Navbar() {
         <div className="flex items-center gap-2">
           <ThemeToggle />
           <MagneticButton className="hidden sm:block" strength={0.4}>
-            <a
+            <Link
               href={h("#contact")}
               className="inline-flex h-8 items-center rounded-md border border-[color-mix(in_oklab,var(--foreground)_14%,transparent)] bg-[color-mix(in_oklab,var(--background)_92%,transparent)] px-3 text-xs font-medium text-[var(--foreground)] hover:bg-[color-mix(in_oklab,var(--background)_88%,transparent)] focus-visible:outline-none focus-visible:ring-2 ring-accent"
             >
               Let's talk
-            </a>
+            </Link>
           </MagneticButton>
           {/* Mobile hamburger — no layout prop (avoids layout recalculation on each toggle) */}
           <button

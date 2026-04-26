@@ -209,7 +209,7 @@ export default async function Home() {
 
               {/* Resume */}
               <MagneticButton>
-                <a
+                <Link
                   href="/resume"
                   className="inline-flex h-11 items-center gap-2 rounded-md border px-5 text-sm font-semibold shadow-sm transition-colors surface hover:bg-[color-mix(in_oklab,var(--background)_82%,transparent)]"
                 >
@@ -221,7 +221,7 @@ export default async function Home() {
                     <polyline points="10 9 9 9 8 9" />
                   </svg>
                   Resume
-                </a>
+                </Link>
               </MagneticButton>
             </div>
           </div>
